@@ -1,0 +1,11 @@
+{{yield}}
+<canvas class='game'></canvas>
+<br />
+
+{{#if isPlaying}}
+{{#link-to 'index'}}Home{{/link-to}}
+{{#link-to 'play.menu'}}Menu{{/link-to}}
+Level {{level}}
+{{/if}}
+
+{{liquid-outlet}}
