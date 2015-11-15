@@ -23,14 +23,14 @@ module.exports = function(deployTarget) {
       accessKeyId: process.env['AWS_KEY'],
       secretAccessKey: process.env['AWS_SECRET'],
       bucket: 'croissant.mtmckenna.com-assets',
-      region: 'us-west-1'
+      region: 'us-east-1'
     }
 
     ENV['s3-index'] = {
       accessKeyId: process.env['AWS_KEY'],
       secretAccessKey: process.env['AWS_SECRET'],
       bucket: 'croissant.mtmckenna.com',
-      region: 'us-west-1'
+      region: 'us-east-1'
     }
   }
 
