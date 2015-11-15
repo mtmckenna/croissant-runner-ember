@@ -7,12 +7,16 @@ export default class {
     this.context = this.canvas.getContext('2d');
     this.configureCanvas({ width: 320, height: 240 });
 
-    this.croissant = new Croissant(this.context);
+    var AudioContext = window.AudioContext || window.webkitAudioContext;
+    this.audioContext = new AudioContext();
+
+    this.croissant = new Croissant(this.context, this.audioContext);
     this.spriteEmitter = new SpriteEmitter(this.context);
 
     this.drawCounter = 0;
     this.score = 0;
     this._hiScore = 0;
+    this.userHasInteracted = false;
     this.gameOver = false;
 
     this.addInputListeners();
@@ -35,8 +39,26 @@ export default class {
   }
 
   addInputListeners() {
-    window.addEventListener('keydown', this.resetGame.bind(this), false);
-    window.addEventListener('touchstart', this.resetGame.bind(this), false);
+    window.addEventListener('keydown', this.resetGame.bind(this), true);
+    window.addEventListener('touchstart', this.resetGame.bind(this), true);
+    window.addEventListener('touchend', this.prepareMobileAudio.bind(this), true);
+  }
+
+  // iOS web audio is such misery.
+  // https://paulbakaus.com/tutorials/html5/web-audio-on-ios/
+  prepareMobileAudio() {
+    if (!this.userHasInteracted) {
+
+      var buffer = this.audioContext.createBuffer(1, 1, 22050);
+      var source = this.audioContext.createBufferSource();
+
+      source.buffer = buffer;
+      source.connect(this.audioContext.destination);
+      source.start(0);
+
+      this.croissant.addAudio(this.audioContext);
+      this.userHasInteracted = true;
+    }
   }
 
   resetGame() {
@@ -44,6 +66,7 @@ export default class {
       this.spriteEmitter.deleteAllSprites();
       this.score = 0;
       this.gameOver = false;
+      this.croissant.napAudio.stop();
     }
   }
 
@@ -56,6 +79,10 @@ export default class {
     var pizzas = this.spriteEmitter.pizzasThatSpriteOverlaps(this.croissant);
     this.spriteEmitter.deleteSprites(pizzas);
     this.score += pizzas.length;
+
+    pizzas.forEach(() => {
+      this.croissant.pizzaAudio.play();
+    });
   }
 
   checkCatBedCollisions() {
@@ -67,6 +94,7 @@ export default class {
 
   goToGameOver(catBed) {
     catBed.switchToSleepingCroissantImage();
+    this.croissant.napAudio.play();
     this.drawWorld();
     this.gameOver = true;
     this.hiScore = this.score;

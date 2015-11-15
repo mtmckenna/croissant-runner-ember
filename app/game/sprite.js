@@ -6,16 +6,26 @@ export default class {
     this.size = size;
     this.vel = { x: velocity.x, y: velocity.y };
 
-    this.image = this.createImage(type);
+    this.cacheImage(type);
     this.drawCounter = 0;
     this._currentFrame = 0;
     this.borderWidth = 2;
+  }
+
+  cacheImage(type) {
+    window.gameCache = window.gameCache || {};
+    window.gameCache.images = window.gameCache.images || {};
+    window.gameCache.images[type] = window.gameCache.images[type] || this.createImage(type);
   }
 
   createImage(type) {
     var image = new Image();
     image.src = `../images/${type}.png`;
     return image;
+  }
+
+  get image() {
+    return window.gameCache.images[this.type];
   }
 
   get currentFrame() {

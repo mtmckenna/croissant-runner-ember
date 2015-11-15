@@ -19,10 +19,6 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    goToMenu: function() {
-      this.transitionTo('play.menu');
-    },
-
     willTransition(transition) {
       this.playOrPauseGame(transition.targetName);
       return true;
