@@ -29,8 +29,6 @@ export default Ember.Component.extend({
 
   configureCanvas() {
     var canvas = this.get('element').getElementsByClassName('game')[0];
-    canvas.setAttribute('tabindex','0');
-    canvas.focus();
     this.set('canvas', canvas);
   },
 
@@ -45,13 +43,12 @@ export default Ember.Component.extend({
 
   addEventListeners() {
     var canvas = this.get('canvas');
-    canvas.addEventListener('keydown', this.playOrPause, false);
+    window.addEventListener('keydown', this.playOrPause, false);
     window.addEventListener('resize', this.resizeCanvas, false);
   },
 
   removeEventListeners() {
-    var canvas = this.get('canvas');
-    canvas.removeEventListener('keydown', this.playOrPause, false);
+    window.removeEventListener('keydown', this.playOrPause, false);
     window.removeEventListener('resize', this.resizeCanvas, false);
   },
 
