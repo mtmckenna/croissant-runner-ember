@@ -24,9 +24,9 @@ export default class extends Sprite {
   }
 
   addAudio(context) {
-    this.jumpAudio = new SoundEffect('jump', context);
-    this.pizzaAudio = new SoundEffect('pizza', context);
-    this.napAudio = new SoundEffect('nap', context, true);
+    this.jumpAudio = new SoundEffect('../audio/jump.wav', context);
+    this.pizzaAudio = new SoundEffect('../audio/pizza.wav', context);
+    this.napAudio = new SoundEffect('../audio/nap.wav', context, true);
   }
 
   jump() {

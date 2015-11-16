@@ -16,7 +16,8 @@ module.exports = function(deployTarget) {
       accessKeyId: process.env['AWS_KEY'],
       secretAccessKey: process.env['AWS_SECRET'],
       bucket: 'croissant.mtmckenna.com-assets',
-      region: 'us-east-1'
+      region: 'us-east-1',
+      filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,wav}'
     }
 
     ENV['s3-index'] = {

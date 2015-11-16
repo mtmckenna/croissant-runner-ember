@@ -1,6 +1,6 @@
 export default class {
-  constructor(type, context, loop = false) {
-    this.path = `../audio/${type}.wav`;
+  constructor(path, context, loop = false) {
+    this.path = path;
     this.context = context;
     this.loop = loop;
     this.loadAudio(this.path);
