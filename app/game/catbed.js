@@ -3,17 +3,20 @@ import Sprite from './sprite';
 export default class extends Sprite {
   constructor(context) {
     var y = 210;
-    super('catbed',
+    var path = '../images/catbed.png';
+    super(path,
           context,
           { x: 320, y: y },
           { width: 32, height: 28 },
           { x: -1.5, y: 0 } );
 
-    this.cacheImage('croissant-in-catbed');
+    this.type = 'catbed';
+    this.croissantInCatBedPath = '../images/croissant-in-catbed.png';
+    this.cacheImage(this.croissantInCatBedPath);
   }
 
   switchToSleepingCroissantImage() {
-    this.type = 'croissant-in-catbed';
+    this.path = this.croissantInCatBedPath;
     this.pos.y = 206;
     this.size.height = 32;
     this.draw();

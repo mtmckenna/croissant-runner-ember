@@ -1,31 +1,31 @@
 export default class {
-  constructor(type, context, startingPosition, size, velocity) {
-    this.type = type;
+  constructor(path, context, startingPosition, size, velocity) {
+    this.path = path;
     this.context = context;
     this.pos = startingPosition;
     this.size = size;
     this.vel = { x: velocity.x, y: velocity.y };
 
-    this.cacheImage(type);
+    this.cacheImage(path);
     this.drawCounter = 0;
     this._currentFrame = 0;
     this.borderWidth = 2;
   }
 
-  cacheImage(type) {
+  cacheImage(path) {
     window.gameCache = window.gameCache || {};
     window.gameCache.images = window.gameCache.images || {};
-    window.gameCache.images[type] = window.gameCache.images[type] || this.createImage(type);
+    window.gameCache.images[path] = window.gameCache.images[path] || this.createImage(path);
   }
 
-  createImage(type) {
+  createImage(path) {
     var image = new Image();
-    image.src = `../images/${type}.png`;
+    image.src = path;
     return image;
   }
 
   get image() {
-    return window.gameCache.images[this.type];
+    return window.gameCache.images[this.path];
   }
 
   get currentFrame() {

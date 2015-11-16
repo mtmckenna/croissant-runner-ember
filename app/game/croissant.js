@@ -3,7 +3,8 @@ import SoundEffect from './sound-effect';
 
 export default class extends Sprite {
   constructor(canvasContext, audioContext) {
-    super('croissant',
+    var path = '../images/croissant.png';
+    super(path,
           canvasContext,
           { x: 50, y: 200 },
           { width: 29, height: 32 },

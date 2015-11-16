@@ -3,7 +3,9 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    prepend: 'https://s3.amazonaws.com/croissant.mtmckenna.com-assets/'
+    fingerprint: {
+      prepend: 'https://s3.amazonaws.com/croissant.mtmckenna.com-assets/'
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
