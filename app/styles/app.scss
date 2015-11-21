@@ -38,6 +38,14 @@ canvas {
   transform: translateY(-50%);
 }
 
+.play--menu-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 28px;
+  height: 30px;
+}
+
 .menu {
   position:fixed;
   padding:0;

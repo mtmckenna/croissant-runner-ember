@@ -31,6 +31,7 @@
     "ember-cli-deploy-revision-data": "0.1.0",
     "ember-cli-deploy-s3": "0.1.0",
     "ember-cli-deploy-s3-index": "0.1.0",
+    "ember-cli-document-title": "0.2.0",
     "ember-cli-htmlbars": "0.7.9",
     "ember-cli-htmlbars-inline-precompile": "^0.2.0",
     "ember-cli-ic-ajax": "0.2.1",
