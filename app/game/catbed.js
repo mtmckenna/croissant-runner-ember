@@ -3,7 +3,7 @@ import Sprite from './sprite';
 export default class extends Sprite {
   constructor(context) {
     var y = 210;
-    var path = '../images/catbed.png';
+    var path = 'assets/images/catbed.png';
     super(path,
           context,
           { x: 320, y: y },
@@ -11,7 +11,7 @@ export default class extends Sprite {
           { x: -1.5, y: 0 } );
 
     this.type = 'catbed';
-    this.croissantInCatBedPath = '../images/croissant-in-catbed.png';
+    this.croissantInCatBedPath = 'assets/images/croissant-in-catbed.png';
     this.cacheImage(this.croissantInCatBedPath);
   }
 

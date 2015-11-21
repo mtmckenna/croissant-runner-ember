@@ -3,7 +3,7 @@ import { getRandomInt } from './util';
 
 export default class extends Sprite {
   constructor(context) {
-    var path = '../images/flower.png';
+    var path = 'assets/images/flower.png';
     var y = getRandomInt(220, 234);
     super(path,
           context,

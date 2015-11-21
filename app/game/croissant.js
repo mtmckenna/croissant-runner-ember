@@ -3,7 +3,7 @@ import SoundEffect from './sound-effect';
 
 export default class extends Sprite {
   constructor(canvasContext, audioContext) {
-    var path = '../images/croissant.png';
+    var path = 'assets/images/croissant.png';
     super(path,
           canvasContext,
           { x: 50, y: 200 },
@@ -24,9 +24,9 @@ export default class extends Sprite {
   }
 
   addAudio(context) {
-    this.jumpAudio = new SoundEffect('../audio/jump.wav', context);
-    this.pizzaAudio = new SoundEffect('../audio/pizza.wav', context);
-    this.napAudio = new SoundEffect('../audio/nap.wav', context, true);
+    this.jumpAudio = new SoundEffect('assets/audio/jump.wav', context);
+    this.pizzaAudio = new SoundEffect('assets/audio/pizza.wav', context);
+    this.napAudio = new SoundEffect('assets/audio/nap.wav', context, true);
   }
 
   jump() {

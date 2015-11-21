@@ -1,0 +1,146 @@
+html, body {
+  width:  100%;
+  height: 100%;
+  margin: 0px;
+  text-align: center;
+  font: 15px 'Lucida Console', Monaco, monospace;
+}
+
+body {
+  background: #000;
+}
+
+img {
+  image-rendering: pixelated;
+}
+
+canvas {
+  image-rendering: pixelated;
+  vertical-align: bottom;
+}
+
+.ember-view {
+  height: 100%;
+}
+
+.canvas-wide {
+  height: 100%;
+  width: auto;
+}
+
+.canvas-tall {
+  height: auto;
+  width: 100%;
+}
+
+.menu {
+  position:fixed;
+  padding:0;
+  margin:0;
+
+  top:0;
+  left:0;
+
+  width: 100%;
+  height: 100%;
+  background:rgba(255,255,255,0.5);
+}
+
+.index--container {
+  position: absolute;
+  background-color: #66ccff;
+  height: 100%;
+  width: 100%;
+}
+
+.index--menu {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+}
+
+.index--menu__play {
+  font-size: 100px;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+  color: #fff;
+  text-decoration: none;
+  animation: index--menu__play__colors--keyframe 1s infinite;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:active, &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 153, 255, 0.5);
+  }
+}
+
+// http://codepen.io/beben-koben/pen/gfuvc
+@keyframes index--menu__play__colors--keyframe {
+  0% {color: #ff0000;}
+  10% {color: #ff8000;}
+  20% {color: #ffff00;}
+  30% {color: #80ff00;}
+  40% {color: #00ff00;}
+  50% {color: #00ff80;}
+  60% {color: #00ffff;}
+  70% {color: #0080ff;}
+  80% {color: #0000ff;}
+  90% {color: #8000ff;}
+  100% {color: #ff0080;}
+}
+
+.index--play-button {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.index--title-text {
+  font: 60px 'Lucida Console', Monaco, monospace;
+  color: #fff;
+  text-align: center;
+}
+
+.index--ground {
+  width: 100%;
+  height: 20px;
+  bottom: 0;
+  position: fixed;
+  background-color: #4f8f00;
+}
+
+.index--croissant {
+  animation: index--croissant__translate-keyframe 2.0s infinite alternate;
+}
+
+.index--croissant__flip {
+  display: inline-block;
+  animation: index--croissant__flip-keyframe 0.5s 1.0s infinite alternate;
+}
+
+.index--croissant__image {
+  position: fixed;
+  bottom: 10px;
+  width: 30px;
+  height: 32px;
+  display: inline-block;
+  image-rendering: pixelated;
+  background-image: url('images/croissant.png');
+  animation: index--croissant__sprite-keyframe 0.3s steps(2) infinite;
+}
+
+@keyframes index--croissant__sprite-keyframe {
+ 100% {
+   background-position: -60px;
+ }
+}
+
+.index--menu-play-button {
+  /*width:*/
+}
