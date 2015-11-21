@@ -40,6 +40,7 @@ export default class {
 
   addInputListeners() {
     window.addEventListener('keydown', this.resetGame.bind(this), true);
+    window.addEventListener('click', this.resetGame.bind(this), true);
     window.addEventListener('touchstart', this.resetGame.bind(this), true);
     window.addEventListener('touchend', this.prepareMobileAudio.bind(this), true);
   }

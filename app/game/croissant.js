@@ -20,6 +20,7 @@ export default class extends Sprite {
 
   addInputListeners() {
     window.addEventListener('keydown', this.jump.bind(this), false);
+    window.addEventListener('click', this.jump.bind(this), false);
     window.addEventListener('touchstart', this.jump.bind(this), false);
   }
 
