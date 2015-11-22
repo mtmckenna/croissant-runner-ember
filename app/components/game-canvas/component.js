@@ -1,7 +1,8 @@
 import Ember from 'ember';
-import Game from '../../game/game';
 
 export default Ember.Component.extend({
+  game: Ember.inject.service(),
+
   pauseCallback: function() {
     if (this.get('isPlaying')) {
       this.play();
@@ -12,7 +13,7 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     this.configureCanvas();
-    this.configureGame();
+    this.get('game').configureGame(this.get('canvas'));
     this.configureEventListeners();
 
     this.play();
@@ -31,10 +32,6 @@ export default Ember.Component.extend({
     this.set('canvas', canvas);
   },
 
-  configureGame() {
-    this.set('game', new Game(this.get('canvas')));
-  },
-
   configureEventListeners() {
     this.set('playOrPause', this._playOrPause.bind(this));
     this.set('resizeCanvas', this._resizeCanvas.bind(this));
@@ -48,7 +45,8 @@ export default Ember.Component.extend({
   removeEventListeners() {
     window.removeEventListener('keydown', this.playOrPause, false);
     window.removeEventListener('resize', this.resizeCanvas, false);
-    if (this.get('game')) { this.get('game').removeEventListeners(); }
+    const game = this.get('game');
+    if (game) { game.removeEventListeners(); }
   },
 
   play() {
@@ -69,8 +67,9 @@ export default Ember.Component.extend({
 
   main() {
     this.set('animReq', window.requestAnimationFrame(this.main.bind(this)));
-    this.game.update();
-    this.game.draw();
+    const game = this.get('game');
+    game.update();
+    game.draw();
   },
 
   _playOrPause(e) {
