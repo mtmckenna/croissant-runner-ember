@@ -11,5 +11,11 @@ export default Ember.Route.extend({
       outlet: 'game-menu',
       into: 'play'
     });
+  },
+
+  actions: {
+    goToLevel: function(level) {
+      this.transitionTo('play', level);
+    }
   }
 });

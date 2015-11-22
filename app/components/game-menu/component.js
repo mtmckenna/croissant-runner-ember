@@ -21,11 +21,16 @@ export default Ember.Component.extend({
       this.set('audioEnabled', game.audioEnabled);
     },
 
-    nextLevel: {
+    nextLevel: function(){
+      const game = this.get('game');
+      game.level = game.level + 1;
+      this.sendAction('goToLevel', game.level);
     },
 
-    previousLevel: {
+    previousLevel: function(){
+      const game = this.get('game');
+      game.level = Math.max(game.level - 1, 1);
+      this.sendAction('goToLevel', game.level);
     }
-
   }
 });

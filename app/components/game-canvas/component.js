@@ -13,7 +13,9 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     this.configureCanvas();
-    this.get('game').configureGame(this.get('canvas'));
+    const canvas = this.get('canvas');
+    const level = this.get('level');
+    this.get('game').configureGame(canvas, level);
     this.configureEventListeners();
 
     this.play();

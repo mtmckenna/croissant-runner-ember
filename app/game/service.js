@@ -7,8 +7,9 @@ export default Ember.Service.extend({
   initializedAlready: false,
   audioEnabled: true,
 
-  configureGame(canvas) {
+  configureGame(canvas, level) {
     this.canvas = canvas;
+    this.level = level;
     this.context = this.canvas.getContext('2d');
     this.configureCanvas({ width: 320, height: 240 });
 
