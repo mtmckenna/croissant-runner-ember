@@ -19,7 +19,7 @@ export default class {
     this.userHasInteracted = false;
     this.gameOver = false;
 
-    this.addInputListeners();
+    this.configureEventListeners();
   }
 
   set hiScore(score) {
@@ -38,16 +38,41 @@ export default class {
     this.canvas.height = dimensions.height;
   }
 
-  addInputListeners() {
-    window.addEventListener('keydown', this.resetGame.bind(this), true);
-    window.addEventListener('click', this.resetGame.bind(this), true);
-    window.addEventListener('touchstart', this.resetGame.bind(this), true);
-    window.addEventListener('touchend', this.prepareMobileAudio.bind(this), true);
+  configureEventListeners() {
+    this.resetGame = this._resetGame.bind(this);
+    this.prepareMobileAudio = this._prepareMobileAudio.bind(this);
+    this.jump = this._jump.bind(this);
+  }
+
+  addEventListeners() {
+    window.addEventListener('keydown', this.resetGame, true);
+    window.addEventListener('click', this.resetGame, true);
+    window.addEventListener('touchstart', this.resetGame, true);
+    window.addEventListener('touchend', this.prepareMobileAudio, true);
+
+    window.addEventListener('keydown', this.jump, false);
+    window.addEventListener('click', this.jump, false);
+    window.addEventListener('touchstart', this.jump, false);
+  }
+
+  removeEventListeners() {
+    window.removeEventListener('keydown', this.resetGame, true);
+    window.removeEventListener('click', this.resetGame, true);
+    window.removeEventListener('touchstart', this.resetGame, true);
+    window.removeEventListener('touchend', this.prepareMobileAudio, true);
+
+    window.removeEventListener('keydown', this.jump, false);
+    window.removeEventListener('click', this.jump, false);
+    window.removeEventListener('touchstart', this.jump, false);
+  }
+
+  _jump() {
+    this.croissant.jump();
   }
 
   // iOS web audio is such misery.
   // https://paulbakaus.com/tutorials/html5/web-audio-on-ios/
-  prepareMobileAudio() {
+  _prepareMobileAudio() {
     if (!this.userHasInteracted) {
 
       var buffer = this.audioContext.createBuffer(1, 1, 22050);
@@ -62,7 +87,7 @@ export default class {
     }
   }
 
-  resetGame() {
+  _resetGame() {
     if (this.gameOver) {
       this.spriteEmitter.deleteAllSprites();
       this.score = 0;

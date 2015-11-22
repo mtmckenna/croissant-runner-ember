@@ -15,13 +15,6 @@ export default class extends Sprite {
     this.groundLevel = this.pos.y;
 
     this.addAudio(audioContext);
-    this.addInputListeners();
-  }
-
-  addInputListeners() {
-    window.addEventListener('keydown', this.jump.bind(this), false);
-    window.addEventListener('click', this.jump.bind(this), false);
-    window.addEventListener('touchstart', this.jump.bind(this), false);
   }
 
   addAudio(context) {

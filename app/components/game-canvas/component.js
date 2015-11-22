@@ -41,7 +41,6 @@ export default Ember.Component.extend({
   },
 
   addEventListeners() {
-    var canvas = this.get('canvas');
     window.addEventListener('keydown', this.playOrPause, false);
     window.addEventListener('resize', this.resizeCanvas, false);
   },
@@ -49,25 +48,29 @@ export default Ember.Component.extend({
   removeEventListeners() {
     window.removeEventListener('keydown', this.playOrPause, false);
     window.removeEventListener('resize', this.resizeCanvas, false);
+    if (this.get('game')) { this.get('game').removeEventListeners(); }
   },
 
   play() {
     if (!this.get('isPlaying')) { return; }
     this.removeEventListeners();
     this.addEventListeners();
+    this.get('game').addEventListeners();
 
     this.main();
-  },
-
-  main() {
-    this.set('animReq', window.requestAnimationFrame(this.main.bind(this)));
-    this.game.update();
-    this.game.draw();
   },
 
   pause() {
     window.cancelAnimationFrame(this.get('animReq'));
     this.set('animReq', null);
+    if (this.get('game')) { this.get('game').removeEventListeners(); }
+  },
+
+
+  main() {
+    this.set('animReq', window.requestAnimationFrame(this.main.bind(this)));
+    this.game.update();
+    this.game.draw();
   },
 
   _playOrPause(e) {
