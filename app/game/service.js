@@ -115,6 +115,7 @@ export default Ember.Service.extend({
   },
 
   playAudio(effectName) {
+    if (!this.audioEnabled) { return; }
     this.audioHash[effectName].play();
   },
 
