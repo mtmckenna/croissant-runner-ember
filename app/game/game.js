@@ -51,7 +51,7 @@ export default class {
     window.addEventListener('touchend', this.prepareMobileAudio, true);
 
     window.addEventListener('keydown', this.jump, false);
-    window.addEventListener('click', this.jump, false);
+    window.addEventListener('mousedown', this.jump, false);
     window.addEventListener('touchstart', this.jump, false);
   }
 
@@ -62,7 +62,7 @@ export default class {
     window.removeEventListener('touchend', this.prepareMobileAudio, true);
 
     window.removeEventListener('keydown', this.jump, false);
-    window.removeEventListener('click', this.jump, false);
+    window.removeEventListener('mousedown', this.jump, false);
     window.removeEventListener('touchstart', this.jump, false);
   }
 
