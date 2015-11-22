@@ -1,9 +1,11 @@
 import Ember from 'ember';
 import Croissant from './croissant';
 import SpriteEmitter from './sprite-emitter';
+import SoundEffect from './sound-effect';
 
 export default Ember.Service.extend({
   initializedAlready: false,
+  audioEnabled: true,
 
   configureGame(canvas) {
     this.canvas = canvas;
@@ -12,6 +14,7 @@ export default Ember.Service.extend({
 
     var AudioContext = window.AudioContext || window.webkitAudioContext;
     this.audioContext = new AudioContext();
+    this.addAudioEffects(this.audioContext);
 
     this.croissant = new Croissant(this.context, this.audioContext);
     this.spriteEmitter = new SpriteEmitter(this.context);
@@ -24,6 +27,17 @@ export default Ember.Service.extend({
       this.userHasInteracted = false;
       this.gameOver = false;
       this.initializedAlready = true;
+    }
+  },
+
+  addAudioEffects(audioContext) {
+    const jumpAudio = new SoundEffect('assets/audio/jump.wav', audioContext);
+    const pizzaAudio = new SoundEffect('assets/audio/pizza.wav', audioContext);
+    const napAudio = new SoundEffect('assets/audio/nap.wav', audioContext, true);
+    this.audioHash = {
+      pizza: pizzaAudio,
+      jump: jumpAudio,
+      nap: napAudio
     }
   },
 
@@ -68,7 +82,8 @@ export default Ember.Service.extend({
   },
 
   _jump() {
-    this.croissant.jump();
+    const didJump = this.croissant.jump();
+    if (didJump) { this.playAudio('jump') };
   },
 
   // iOS web audio is such misery.
@@ -93,8 +108,16 @@ export default Ember.Service.extend({
       this.spriteEmitter.deleteAllSprites();
       this.score = 0;
       this.gameOver = false;
-      this.croissant.napAudio.stop();
+      this.stopAudio('nap');
     }
+  },
+
+  playAudio(effectName) {
+    this.audioHash[effectName].play();
+  },
+
+  stopAudio(effectName) {
+    this.audioHash[effectName].stop();
   },
 
   checkCollisions() {
@@ -108,7 +131,7 @@ export default Ember.Service.extend({
     this.score += pizzas.length;
 
     pizzas.forEach(() => {
-      this.croissant.pizzaAudio.play();
+      this.playAudio('pizza');
     });
   },
 
@@ -121,7 +144,7 @@ export default Ember.Service.extend({
 
   goToGameOver(catBed) {
     catBed.switchToSleepingCroissantImage();
-    this.croissant.napAudio.play();
+    this.playAudio('nap');
     this.drawWorld();
     this.gameOver = true;
     this.setHiScore(this.score);
