@@ -1,8 +1,8 @@
 import Sprite from './sprite';
 
 export default class extends Sprite {
-  constructor(canvasContext) {
-    var path = 'assets/images/croissant.png';
+  constructor(canvasContext, canvasDimensions) {
+    const path = 'assets/images/croissant.png';
     super(path,
           canvasContext,
           { x: 50, y: 200 },
@@ -11,9 +11,11 @@ export default class extends Sprite {
 
     this.gravity = .5;
     this.jumpVelocity = -14;
-    this.groundLevel = this.pos.y;
   }
 
+  get groundLevel() {
+    return this.game.adjustedDimensions.height - 40;
+  }
 
   jump() {
     if (this.pos.y < this.groundLevel) { return false; }

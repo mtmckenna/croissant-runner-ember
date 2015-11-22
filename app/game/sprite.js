@@ -12,6 +12,7 @@ export default class {
     this.borderWidth = 2;
   }
 
+
   cacheImage(path) {
     window.gameCache = window.gameCache || {};
     window.gameCache.images = window.gameCache.images || {};

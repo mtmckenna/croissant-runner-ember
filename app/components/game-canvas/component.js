@@ -9,6 +9,7 @@ export default Ember.Component.extend({
     const canvas = this.get('canvas');
     const level = this.get('level');
     const game = this.get('game');
+    this.addEventListeners();
 
     game.configureGame(canvas, level);
 
@@ -26,7 +27,7 @@ export default Ember.Component.extend({
   },
 
   configureCanvas() {
-    var canvas = this.get('element').getElementsByClassName('game')[0];
+    var canvas = this.get('element').getElementsByClassName('js-game')[0];
     this.set('canvas', canvas);
   },
 
@@ -61,11 +62,13 @@ export default Ember.Component.extend({
   _resizeCanvas() {
     var width = window.innerWidth;
     var height = window.innerHeight;
+    const viewportDimensions = { width: width, height: height };
     var canvasClass = 'canvas-tall';
 
     if (width > height) { canvasClass = 'canvas-wide'; }
 
     var canvas = this.get('canvas');
-    canvas.className = canvasClass;
+    this.get('game').resizeCanvasWithViewportDimensions(viewportDimensions);
+    //canvas.className = canvasClass;
   }
 });
