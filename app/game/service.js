@@ -19,15 +19,17 @@ export default Ember.Service.extend({
     this.croissant = new Croissant(this.context, this.audioContext);
     this.spriteEmitter = new SpriteEmitter(this.context);
     this.configureEventListeners();
+    this.configureInitialGameState();
+  },
 
-    if (!this.initializedAlready) {
-      this.drawCounter = 0;
-      this.score = 0;
-      this.hiScore = 0;
-      this.userHasInteracted = false;
-      this.gameOver = false;
-      this.initializedAlready = true;
-    }
+  configureInitialGameState() {
+    if (this.initializedAlready) { return; }
+    this.drawCounter = 0;
+    this.score = 0;
+    this.hiScore = 0;
+    this.userHasInteracted = false;
+    this.gameOver = false;
+    this.initializedAlready = true;
   },
 
   addAudioEffects(audioContext) {
