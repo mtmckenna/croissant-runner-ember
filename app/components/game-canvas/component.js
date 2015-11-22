@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import Game from '../../game/game';
 
-
 export default Ember.Component.extend({
   pauseCallback: function() {
     if (this.get('isPlaying')) {

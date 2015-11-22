@@ -46,17 +46,40 @@ canvas {
   height: 30px;
 }
 
-.menu {
-  position:fixed;
+.game-menu {
+  position:absolute;
   padding:0;
   margin:0;
-
   top:0;
   left:0;
-
   width: 100%;
   height: 100%;
-  background:rgba(255,255,255,0.5);
+  background:rgba(255,255,255,0.2);
+}
+
+.game-menu--options {
+  padding: 0;
+  color: #fff;
+  font-size: 40px;
+  list-style: none;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.game-menu--button {
+  width: 100%;
+  color: #fff;
+  text-decoration: none;
+  font-size: 50px;
+  text-align: center;
+
+  &:active, &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 153, 255, 0.5);
+    text-decoration: none;
+  }
 }
 
 .index--container {
@@ -152,8 +175,4 @@ canvas {
  100% {
    background-position: -60px;
  }
-}
-
-.index--menu-play-button {
-  /*width:*/
 }
