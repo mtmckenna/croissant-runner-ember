@@ -1,6 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  game: Ember.inject.service(),
+
+  playGame: function() {
+    const game = this.get('game');
+    game.paused = false;
+  }.on('activate'),
+
   titleToken: function(model) {
     return `Level ${model}`;
   },
@@ -15,16 +22,13 @@ export default Ember.Route.extend({
   },
 
   playOrPauseGame: function(targetName) {
-    if (targetName === 'play.index') {
-      this.controllerFor('play').set('isPlaying', true);
-    } else {
-      this.controllerFor('play').set('isPlaying', false);
-    }
   },
 
   actions: {
     willTransition(transition) {
-      this.playOrPauseGame(transition.targetName);
+      if (transition.targetName === 'play.index') {
+        this.get('game').play();
+      }
       return true;
     }
   }

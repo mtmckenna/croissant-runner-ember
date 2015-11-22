@@ -6,6 +6,7 @@ import SoundEffect from './sound-effect';
 export default Ember.Service.extend({
   initializedAlready: false,
   audioEnabled: true,
+  paused: false,
 
   configureGame(canvas, level) {
     this.canvas = canvas;
@@ -15,12 +16,32 @@ export default Ember.Service.extend({
 
     var AudioContext = window.AudioContext || window.webkitAudioContext;
     this.audioContext = new AudioContext();
-    this.addAudioEffects(this.audioContext);
+    this.configureAudioEffects(this.audioContext);
 
     this.croissant = new Croissant(this.context, this.audioContext);
     this.spriteEmitter = new SpriteEmitter(this.context);
     this.configureEventListeners();
     this.configureInitialGameState();
+  },
+
+  play() {
+    this.paused = false;
+    this.removeEventListeners();
+    this.addEventListeners();
+    this.main();
+  },
+
+  pause() {
+    this.paused = true;
+    window.cancelAnimationFrame(this.animReq);
+    this.animReq =  null;
+    this.removeEventListeners()
+  },
+
+  main() {
+    this.animReq = window.requestAnimationFrame(this.main.bind(this));
+    this.update();
+    this.draw();
   },
 
   configureInitialGameState() {
@@ -33,14 +54,11 @@ export default Ember.Service.extend({
     this.initializedAlready = true;
   },
 
-  addAudioEffects(audioContext) {
-    const jumpAudio = new SoundEffect('assets/audio/jump.wav', audioContext);
-    const pizzaAudio = new SoundEffect('assets/audio/pizza.wav', audioContext);
-    const napAudio = new SoundEffect('assets/audio/nap.wav', audioContext, true);
+  configureAudioEffects(audioContext) {
     this.audioHash = {
-      pizza: pizzaAudio,
-      jump: jumpAudio,
-      nap: napAudio
+      pizza: new SoundEffect('assets/audio/pizza.wav', audioContext),
+      jump: new SoundEffect('assets/audio/jump.wav', audioContext),
+      nap: new SoundEffect('assets/audio/nap.wav', audioContext, true)
     }
   },
 

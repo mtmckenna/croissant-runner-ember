@@ -3,22 +3,18 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   game: Ember.inject.service(),
 
-  pauseCallback: function() {
-    if (this.get('isPlaying')) {
-      this.play();
-    } else {
-      this.pause();
-    }
-  }.observes('isPlaying'),
-
   didInsertElement() {
+    this.configureEventListeners();
     this.configureCanvas();
     const canvas = this.get('canvas');
     const level = this.get('level');
-    this.get('game').configureGame(canvas, level);
-    this.configureEventListeners();
+    const game = this.get('game');
 
-    this.play();
+    game.configureGame(canvas, level);
+
+    if (!game.paused) {
+      game.play();
+    }
 
     Ember.run.scheduleOnce('afterRender', () => {
       this.resizeCanvas();
@@ -51,35 +47,13 @@ export default Ember.Component.extend({
     if (game) { game.removeEventListeners(); }
   },
 
-  play() {
-    if (!this.get('isPlaying')) { return; }
-    this.removeEventListeners();
-    this.addEventListeners();
-    this.get('game').addEventListeners();
-
-    this.main();
-  },
-
-  pause() {
-    window.cancelAnimationFrame(this.get('animReq'));
-    this.set('animReq', null);
-    if (this.get('game')) { this.get('game').removeEventListeners(); }
-  },
-
-
-  main() {
-    this.set('animReq', window.requestAnimationFrame(this.main.bind(this)));
-    const game = this.get('game');
-    game.update();
-    game.draw();
-  },
-
   _playOrPause(e) {
+    const game = this.get('game');
     if (e.keyCode === 67) {
       if(this.get('animReq')) {
-        this.pause();
+        game.pause();
       } else {
-        this.play();
+        game.play();
       }
     }
   },

@@ -3,10 +3,9 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   game: Ember.inject.service(),
 
-  setupController: function(controller, model) {
-    controller.set('model', model);
-    this.controllerFor('play').set('isPlaying', false);
-  },
+  pauseGame: function(){
+    this.get('game').pause();
+  }.on('activate'),
 
   renderTemplate: function() {
     this.render('play.menu', {
