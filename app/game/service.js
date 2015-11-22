@@ -151,6 +151,7 @@ export default Ember.Service.extend({
     var pizzas = this.spriteEmitter.pizzasThatSpriteOverlaps(this.croissant);
     this.spriteEmitter.deleteSprites(pizzas);
     this.score += pizzas.length;
+    this.setHiScore(this.score);
 
     pizzas.forEach(() => {
       this.playAudio('pizza');
@@ -192,6 +193,7 @@ export default Ember.Service.extend({
   },
 
   drawWorld() {
+    this.setHiScore(this.score);
     this.context.clearRect(0, 0, 320, 240);
     this.drawGround();
     this.spriteEmitter.draw();
@@ -204,5 +206,4 @@ export default Ember.Service.extend({
     this.drawWorld();
     this.croissant.draw();
   }
-
 });
