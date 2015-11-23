@@ -10,11 +10,8 @@ export default class extends Sprite {
           { x: 0, y: 0 });
 
     this.gravity = .5;
+    this.groundLevel = this.pos.y;
     this.jumpVelocity = -14;
-  }
-
-  get groundLevel() {
-    return this.game.adjustedDimensions.height - 40;
   }
 
   jump() {

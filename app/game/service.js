@@ -10,6 +10,7 @@ export default Ember.Service.extend({
   paused: false,
   unscaledDimensions: { width: 320, height: 240 },
   adjustedDimensions: { width: 320, height: 240 },
+  yOffset: 0,
 
   configureGame(canvas, level) {
     Sprite.prototype.game = this;
@@ -81,6 +82,8 @@ export default Ember.Service.extend({
     const adjustedDimensions = {width: unscaledCanvasWidth, height: unscaledCanvasHeight};
 
     this.adjustedDimensions = adjustedDimensions;
+    this.yOffset = unscaledHeadRoom;
+
     this.configureCanvas(adjustedDimensions);
   },
 

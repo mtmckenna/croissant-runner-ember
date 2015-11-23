@@ -12,6 +12,12 @@ export default class {
     this.borderWidth = 2;
   }
 
+  get adjustedPos() {
+    return {
+      x: this.pos.x,
+      y: this.pos.y + this.game.yOffset
+    }
+  }
 
   cacheImage(path) {
     window.gameCache = window.gameCache || {};
@@ -67,7 +73,7 @@ export default class {
     this.context.drawImage(this.image,
                            this.currentFrame * (this.size.width + this.borderWidth), 0,
                            this.size.width, this.size.height,
-                           this.pos.x, this.pos.y,
+                           this.adjustedPos.x, this.adjustedPos.y,
                            this.size.width, this.size.height);
   }
 
