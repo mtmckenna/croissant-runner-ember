@@ -251,9 +251,8 @@ export default Ember.Service.extend({
   },
 
   draw() {
-    if (this.gameOver) { return; }
     this.drawCounter += 1;
     this.drawWorld();
-    this.croissant.draw();
+    if (!this.gameOver) { this.croissant.draw(); }
   }
 });
