@@ -14,7 +14,7 @@ export default class {
 
   get adjustedPos() {
     return {
-      x: this.pos.x,
+      x: this.pos.x + this.game.xOffset,
       y: this.pos.y + this.game.yOffset
     }
   }
@@ -63,17 +63,19 @@ export default class {
   }
 
   update() {
-    this.pos.x = Math.floor(this.pos.x + this.vel.x);
-    this.pos.y = Math.floor(this.pos.y + this.vel.y);
+    this.pos.x = this.pos.x + this.vel.x;
+    this.pos.y = this.pos.y + this.vel.y;
   }
 
   draw() {
     this.drawCounter += 1;
+    const x = Math.floor(this.adjustedPos.x);
+    const y = Math.floor(this.adjustedPos.y);
 
     this.context.drawImage(this.image,
                            this.currentFrame * (this.size.width + this.borderWidth), 0,
                            this.size.width, this.size.height,
-                           this.adjustedPos.x, this.adjustedPos.y,
+                           x, y,
                            this.size.width, this.size.height);
   }
 

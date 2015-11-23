@@ -8,9 +8,11 @@ export default Ember.Service.extend({
   initializedAlready: false,
   audioEnabled: false,
   paused: false,
+  gameOver: false,
   unscaledDimensions: { width: 320, height: 240 },
   adjustedDimensions: { width: 320, height: 240 },
   yOffset: 0,
+  xOffset: 0,
 
   configureGame(canvas, level) {
     Sprite.prototype.game = this;
@@ -74,6 +76,16 @@ export default Ember.Service.extend({
   },
 
   resizeCanvasWithViewportDimensions(viewportDimensions) {
+    if (viewportDimensions.width > viewportDimensions.height) {
+      this.resizeCanvasForLandscapeViewport(viewportDimensions);
+    } else {
+      this.resizeCanvasForPortraitViewport(viewportDimensions);
+    }
+
+    this.draw();
+  },
+
+  resizeCanvasForPortraitViewport(viewportDimensions) {
     const scaleFactor = viewportDimensions.width / this.unscaledDimensions.width;
     const scaledGameHeight = scaleFactor * this.unscaledDimensions.height;
     const unscaledHeadRoom = (viewportDimensions.height - scaledGameHeight) / scaleFactor;
@@ -83,6 +95,22 @@ export default Ember.Service.extend({
 
     this.adjustedDimensions = adjustedDimensions;
     this.yOffset = unscaledHeadRoom;
+    this.xOffset = 0;
+
+    this.configureCanvas(adjustedDimensions);
+  },
+
+  resizeCanvasForLandscapeViewport(viewportDimensions) {
+    const scaleFactor = viewportDimensions.height / this.unscaledDimensions.height;
+    const scaledGameWidth = scaleFactor * this.unscaledDimensions.width;
+    const unscaledLeadingWidth = (viewportDimensions.width - scaledGameWidth) / scaleFactor;
+    const unscaledCanvasHeight = 240;
+    const unscaledCanvasWidth = Math.floor(this.unscaledDimensions.width + unscaledLeadingWidth);
+    const adjustedDimensions = {width: unscaledCanvasWidth, height: unscaledCanvasHeight};
+
+    this.adjustedDimensions = adjustedDimensions;
+    this.yOffset = 0;
+    this.xOffset = unscaledLeadingWidth;
 
     this.configureCanvas(adjustedDimensions);
   },
@@ -144,12 +172,12 @@ export default Ember.Service.extend({
   },
 
   _resetGame() {
-    if (this.gameOver) {
-      this.spriteEmitter.deleteAllSprites();
-      this.score = 0;
-      this.gameOver = false;
-      this.stopAudio('nap');
-    }
+    if (!this.gameOver) { return; }
+
+    this.spriteEmitter.deleteAllSprites();
+    this.score = 0;
+    this.gameOver = false;
+    this.stopAudio('nap');
   },
 
   playAudio(effectName) {
@@ -163,7 +191,7 @@ export default Ember.Service.extend({
 
   checkCollisions() {
     this.checkPizzaCollisions();
-    //this.checkCatBedCollisions();
+    this.checkCatBedCollisions();
   },
 
   checkPizzaCollisions() {
@@ -172,16 +200,12 @@ export default Ember.Service.extend({
     this.score += pizzas.length;
     this.setHiScore(this.score);
 
-    pizzas.forEach(() => {
-      this.playAudio('pizza');
-    });
+    pizzas.forEach(() => { this.playAudio('pizza'); });
   },
 
   checkCatBedCollisions() {
     var catBeds = this.spriteEmitter.catBedsThatSpriteOverlaps(this.croissant);
-    if (catBeds.length) {
-      this.goToGameOver(catBeds[0]);
-    }
+    if (catBeds.length) { this.goToGameOver(catBeds[0]); }
   },
 
   goToGameOver(catBed) {
@@ -212,7 +236,9 @@ export default Ember.Service.extend({
     this.context.fillStyle = '#4f8f00';
     this.context.font = '15px "Lucida Console", Monaco, monospace';
     this.context.fillText(`${this.score} Pizzas`, 10, 25);
-    this.context.fillText(`Hi Score: ${this.hiScore}`, 195, 25);
+
+    const hiScoreXPos = 195 + this.xOffset;
+    this.context.fillText(`Hi Score: ${this.hiScore}`, hiScoreXPos, 25);
   },
 
   drawWorld() {

@@ -82,7 +82,7 @@ export default class {
 
   deleteOffscreenSprites() {
     this.sprites = this.sprites.filter(function(sprite) {
-      return (sprite.pos.x + sprite.size.width > 0);
+      return (sprite.adjustedPos.x + sprite.size.width > 0);
     });
   }
 

@@ -6,16 +6,15 @@ export default Ember.Component.extend({
   didInsertElement() {
     this.configureEventListeners();
     this.configureCanvas();
+    this.addEventListeners();
+
     const canvas = this.get('canvas');
     const level = this.get('level');
     const game = this.get('game');
-    this.addEventListeners();
 
     game.configureGame(canvas, level);
 
-    if (!game.paused) {
-      game.play();
-    }
+    if (!game.paused) { game.play(); }
 
     Ember.run.scheduleOnce('afterRender', () => {
       this.resizeCanvas();
@@ -60,15 +59,9 @@ export default Ember.Component.extend({
   },
 
   _resizeCanvas() {
-    var width = window.innerWidth;
-    var height = window.innerHeight;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
     const viewportDimensions = { width: width, height: height };
-    var canvasClass = 'canvas-tall';
-
-    if (width > height) { canvasClass = 'canvas-wide'; }
-
-    var canvas = this.get('canvas');
     this.get('game').resizeCanvasWithViewportDimensions(viewportDimensions);
-    //canvas.className = canvasClass;
   }
 });

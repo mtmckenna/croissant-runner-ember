@@ -1,5 +1,5 @@
 import Sprite from './sprite';
-import { getRandomInt } from './util';
+import { getRandomInt, adjustedPositionForSkySprite } from './util';
 
 export default class extends Sprite {
   constructor(context) {
@@ -10,5 +10,9 @@ export default class extends Sprite {
           { x: 320, y: y },
           { width: 7, height: 5 },
           { x: -0.5, y: 0 });
+  }
+
+  get adjustedPos() {
+    return adjustedPositionForSkySprite(this.game, this.pos);
   }
 }
