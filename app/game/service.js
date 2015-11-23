@@ -9,6 +9,7 @@ export default Ember.Service.extend({
   audioEnabled: false,
   paused: false,
   gameOver: false,
+  cache: { images: {} },
   unscaledDimensions: { width: 320, height: 240 },
   adjustedDimensions: { width: 320, height: 240 },
   yOffset: 0,

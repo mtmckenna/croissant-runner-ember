@@ -20,9 +20,7 @@ export default class {
   }
 
   cacheImage(path) {
-    window.gameCache = window.gameCache || {};
-    window.gameCache.images = window.gameCache.images || {};
-    window.gameCache.images[path] = window.gameCache.images[path] || this.createImage(path);
+    this.game.cache.images[path] = this.game.cache.images[path] || this.createImage(path);
   }
 
   createImage(path) {
@@ -32,7 +30,7 @@ export default class {
   }
 
   get image() {
-    return window.gameCache.images[this.path];
+    return this.game.cache.images[this.path];
   }
 
   get currentFrame() {
