@@ -1,21 +1,24 @@
 <ul class='game-menu--options'>
   <li>
     {{#link-to 'play'}}
-    <div class='game-menu--button'>PLAY!</div>
+    <div class='game-menu--button'>PLAY</div>
     {{/link-to}}
   </li>
   <li>
     <div class='game-menu--button' {{action 'toggleAudio'}}>{{audioText}}</div>
   </li>
   <li>
-    <div class='game-menu--button' {{action 'nextLevel'}}>NEXT LEVEL!</div>
+    <div class='game-menu--button' {{action 'nextLevel'}}>NEXT LEVEL</div>
   </li>
   <li>
-    <div class='game-menu--button' {{action 'previousLevel'}}>PREV LEVEL!</div>
+    <div class='game-menu--button' {{action 'previousLevel'}}>PREV LEVEL</div>
+  </li>
+  <li>
+    <div class='game-menu--button'>HI SCORES</div>
   </li>
   <li>
     {{#link-to 'index'}}
-    <div class='game-menu--button'>WHAT?!</div>
+    <div class='game-menu--button'>HOME</div>
     {{/link-to}}
   </li>
 </ul>
