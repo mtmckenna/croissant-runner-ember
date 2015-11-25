@@ -7,17 +7,10 @@ export default Ember.Component.extend({
   pizzaCount: 0,
 
   didInsertElement() {
-    this.configureEventListeners();
     this.configureCanvas();
+    this.configureGame();
+    this.configureEventListeners();
     this.addEventListeners();
-
-    const canvas = this.get('canvas');
-    const level = this.get('level');
-    const game = this.get('game');
-
-    game.configureGame(canvas, level, this);
-
-    if (!game.paused) { game.play(); }
 
     Ember.run.scheduleOnce('afterRender', () => {
       this.resizeCanvas();
@@ -31,6 +24,16 @@ export default Ember.Component.extend({
   configureCanvas() {
     var canvas = this.get('element').getElementsByClassName('js-game')[0];
     this.set('canvas', canvas);
+  },
+
+  configureGame() {
+    const canvas = this.get('canvas');
+    const level = this.get('level');
+    const game = this.get('game');
+
+    game.configureGame(canvas, level, this);
+
+    if (!game.paused) { game.play(); }
   },
 
   configureEventListeners() {
