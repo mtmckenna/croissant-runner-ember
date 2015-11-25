@@ -3,6 +3,9 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   game: Ember.inject.service(),
 
+  hiScore: 0,
+  pizzaCount: 0,
+
   didInsertElement() {
     this.configureEventListeners();
     this.configureCanvas();
@@ -12,7 +15,7 @@ export default Ember.Component.extend({
     const level = this.get('level');
     const game = this.get('game');
 
-    game.configureGame(canvas, level);
+    game.configureGame(canvas, level, this);
 
     if (!game.paused) { game.play(); }
 
@@ -45,6 +48,14 @@ export default Ember.Component.extend({
     window.removeEventListener('resize', this.resizeCanvas, false);
     const game = this.get('game');
     if (game) { game.removeEventListeners(); }
+  },
+
+  gameEventReceived(eventName, data) {
+    if (eventName === 'updated-pizza-count') {
+      this.set('pizzaCount', data);
+    } else if (eventName === 'new-hi-score') {
+      this.set('hiScore', data);
+    }
   },
 
   _playOrPause(e) {

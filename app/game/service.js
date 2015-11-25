@@ -15,9 +15,10 @@ export default Ember.Service.extend({
   yOffset: 0,
   xOffset: 0,
 
-  configureGame(canvas, level) {
+  configureGame(canvas, level, component) {
     Sprite.prototype.game = this;
     this.canvas = canvas;
+    this.component = component;
     this.level = level;
     this.context = this.canvas.getContext('2d');
     this.configureCanvas(this.unscaledDimensions);
@@ -73,6 +74,7 @@ export default Ember.Service.extend({
   setHiScore(score) {
     if (score > this.hiScore) {
       this.hiScore = score;
+      this.sendGameEvent('new-hi-score', this.score);
     }
   },
 
@@ -197,9 +199,13 @@ export default Ember.Service.extend({
 
   checkPizzaCollisions() {
     var pizzas = this.spriteEmitter.pizzasThatSpriteOverlaps(this.croissant);
+    if (!pizzas.length) { return; }
+
     this.spriteEmitter.deleteSprites(pizzas);
     this.score += pizzas.length;
     this.setHiScore(this.score);
+
+    this.sendGameEvent('updated-pizza-count', this.score);
 
     pizzas.forEach(() => { this.playAudio('pizza'); });
   },
@@ -233,26 +239,21 @@ export default Ember.Service.extend({
     this.context.fillRect(x, y, width, height);
   },
 
-  drawScore() {
-    this.context.fillStyle = '#4f8f00';
-    this.context.font = '15px "Lucida Console", Monaco, monospace';
-    this.context.fillText(`${this.score} Pizzas`, 10, 25);
-
-    const hiScoreXPos = 195 + this.xOffset;
-    this.context.fillText(`Hi Score: ${this.hiScore}`, hiScoreXPos, 25);
-  },
-
   drawWorld() {
     this.setHiScore(this.score);
     this.context.clearRect(0, 0, this.adjustedDimensions.width, this.adjustedDimensions.height);
     this.drawGround();
     this.spriteEmitter.draw();
-    this.drawScore();
   },
 
   draw() {
     this.drawCounter += 1;
     this.drawWorld();
     if (!this.gameOver) { this.croissant.draw(); }
+  },
+
+  sendGameEvent(eventName, data) {
+    if (!this.component) { return; }
+    this.component.gameEventReceived(eventName, data);
   }
 });

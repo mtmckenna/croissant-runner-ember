@@ -6,36 +6,16 @@ html, body {
   font: 15px 'Lucida Console', Monaco, monospace;
 }
 
-body {
-  background: #000;
-}
-
 img {
   image-rendering: pixelated;
 }
 
 canvas {
   image-rendering: pixelated;
-  vertical-align: bottom;
 }
 
 .ember-view {
   height: 100%;
-}
-
-.canvas-wide {
-  height: 100%;
-  width: auto;
-}
-
-.canvas-tall {
-  height: auto;
-  width: 100%;
-
-  display: block;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .play--canvas {
@@ -43,12 +23,28 @@ canvas {
   height: 100%;
 }
 
+.play--scores {
+  color: #fff;
+  font-size: 25px;
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.play--scores__pizza-count {
+  float: left;
+}
+
+.play--scores__hi-score {
+  float: right;
+}
+
 .play--menu-button {
   position: absolute;
   top: 5px;
-  right: 5px;
-  width: 28px;
-  height: 30px;
+  width: 42px;
+  height: 45px;
 }
 
 .game-menu {
