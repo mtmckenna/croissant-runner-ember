@@ -9,7 +9,7 @@ module.exports = function(environment) {
 
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' www.google-analytics.com",
+      'script-src': "'self' www.google-analytics.com 'unsafe-inline'",
       'font-src': "'self'",
       'connect-src': "'self' www.google-analytics.com",
       'img-src': "'self' www.google-analytics.com",

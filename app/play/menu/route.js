@@ -7,16 +7,16 @@ export default Ember.Route.extend({
     this.get('game').pause();
   }.on('activate'),
 
-  renderTemplate: function() {
-    this.render('play.menu', {
-      outlet: 'game-menu',
-      into: 'play'
-    });
-  },
-
   actions: {
     goToLevel: function(level) {
       this.transitionTo('play', level);
     }
+  },
+
+  renderTemplate: function() {
+    this.render('play.menu', {
+      outlet: 'game-overlay',
+      into: 'application'
+    });
   }
 });

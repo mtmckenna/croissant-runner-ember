@@ -1,7 +1,7 @@
 html, body {
   width:  100%;
   height: 100%;
-  margin: 0px;
+  margin: 0;
   text-align: center;
   font: 15px 'Lucida Console', Monaco, monospace;
 }
@@ -12,10 +12,19 @@ img {
 
 canvas {
   image-rendering: pixelated;
+  vertical-align: bottom;
 }
 
-.ember-view {
+.liquid-child {
   height: 100%;
+}
+
+.ember-full-screen-view {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
 .play--canvas {
@@ -24,12 +33,12 @@ canvas {
 }
 
 .play--scores {
+  position: absolute;
   color: #fff;
   font-size: 15px;
   padding: 15px;
   width: 100%;
   box-sizing: border-box;
-  position: absolute;
 }
 
 .play--scores__pizza-count {
@@ -40,10 +49,10 @@ canvas {
   float: right;
 }
 
-.play--menu-button {
-  position: absolute;
+.play--menu-button__link {
+  display: inline-block;
   width: 100%;
-  top: 5px;
+  height: 100%;
 }
 
 .play--menu-button__image {
@@ -52,22 +61,17 @@ canvas {
 }
 
 .game-menu {
-  position:absolute;
-  padding:0;
-  margin:0;
-  top:0;
-  left:0;
-  width: 100%;
-  height: 100%;
   background:rgba(255,255,255,0.2);
-  animation: game-menu__fade-in-keyframe 0.1s;
+  height: 100%;
+  padding: 50px 0;
 }
 
 .game-menu--options {
-  padding: 0;
   color: #fff;
   font-size: 40px;
   list-style: none;
+  padding: 0;
+  margin: 0;
 
   a {
     text-decoration: none;
@@ -88,35 +92,17 @@ canvas {
   }
 }
 
-@keyframes game-menu__fade-in-keyframe {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
 .index--container {
-  position: absolute;
-  background-color: #66ccff;
-  height: 100%;
-  width: 100%;
+  padding: 50px 0;
 }
 
 .index--menu {
-  position: absolute;
   height: 100%;
   width: 100%;
-
 }
 
 .index--menu__play {
   font-size: 100px;
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
   color: #fff;
   text-decoration: none;
   animation: index--menu__play__colors--keyframe 1s infinite;
@@ -147,48 +133,8 @@ canvas {
   100% {color: #ff0080;}
 }
 
-.index--play-button {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 .index--title-text {
   font: 60px 'Lucida Console', Monaco, monospace;
   color: #fff;
   text-align: center;
-}
-
-.index--ground {
-  width: 100%;
-  height: 20px;
-  bottom: 0;
-  position: fixed;
-  background-color: #4f8f00;
-}
-
-.index--croissant {
-  animation: index--croissant__translate-keyframe 2.0s infinite alternate;
-}
-
-.index--croissant__flip {
-  display: inline-block;
-  animation: index--croissant__flip-keyframe 0.5s 1.0s infinite alternate;
-}
-
-.index--croissant__image {
-  position: fixed;
-  bottom: 10px;
-  width: 30px;
-  height: 32px;
-  display: inline-block;
-  image-rendering: pixelated;
-  background-image: url('images/croissant.png');
-  animation: index--croissant__sprite-keyframe 0.3s steps(2) infinite;
-}
-
-@keyframes index--croissant__sprite-keyframe {
- 100% {
-   background-position: -60px;
- }
 }

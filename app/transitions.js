@@ -2,16 +2,9 @@ import Ember from 'ember';
 
 export default function(){
   this.transition(
-    this.fromRoute('index'),
-    this.toRoute('play'),
+    this.matchSelector('.ember-full-screen-view'),
     this.use('toLeft'),
-    this.reverse('toRight')
-  );
-
-  this.transition(
-    this.fromRoute('play.index'),
-    this.toRoute('play.menu'),
-    this.use('toLeft'),
-    this.reverse('toRight')
+    this.reverse('toRight'),
+    this.debug()
   );
 }

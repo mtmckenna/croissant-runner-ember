@@ -23,5 +23,12 @@ export default Ember.Route.extend({
       }
       return true;
     }
+  },
+
+  renderTemplate: function() {
+    this.render('play', {
+      outlet: 'game-overlay',
+      into: 'application'
+    });
   }
 });
