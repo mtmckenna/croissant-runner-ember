@@ -19,7 +19,7 @@ canvas {
   height: 100%;
 }
 
-.ember-full-screen-view {
+.liquid-container-full-screen {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -61,7 +61,7 @@ canvas {
 }
 
 .game-menu {
-  background:rgba(255,255,255,0.2);
+  background:rgba(0,0,0,0.4);
   height: 100%;
   padding: 50px 0;
 }
