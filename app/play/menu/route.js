@@ -4,8 +4,14 @@ export default Ember.Route.extend({
   game: Ember.inject.service(),
 
   pauseGame: function(){
-    this.get('game').pause();
+    const game = this.get('game');
+    game.pause();
   }.on('activate'),
+
+  playGame: function(){
+    const game = this.get('game');
+    game.play();
+  }.on('deactivate'),
 
   actions: {
     goToLevel: function(level) {

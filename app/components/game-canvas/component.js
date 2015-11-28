@@ -14,6 +14,8 @@ export default Ember.Component.extend({
 
     Ember.run.scheduleOnce('afterRender', () => {
       this.resizeCanvas();
+      const game = this.get('game');
+      if (game.paused === false) { game.play(); }
     });
   },
 
@@ -28,12 +30,9 @@ export default Ember.Component.extend({
 
   configureGame() {
     const canvas = this.get('canvas');
-    const level = this.get('level');
     const game = this.get('game');
 
-    game.configureGame(canvas, level, this);
-
-    if (!game.paused) { game.play(); }
+    game.configureGame(canvas, this);
   },
 
   configureEventListeners() {
@@ -58,6 +57,8 @@ export default Ember.Component.extend({
       this.set('pizzaCount', data);
     } else if (eventName === 'new-hi-score') {
       this.set('hiScore', data);
+    } else if (eventName ==='changed-level') {
+      console.log(`level change event received: ${data}`);
     }
   },
 

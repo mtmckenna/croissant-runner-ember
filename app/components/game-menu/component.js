@@ -23,14 +23,14 @@ export default Ember.Component.extend({
 
     nextLevel: function(){
       const game = this.get('game');
-      game.level = game.level + 1;
-      this.sendAction('goToLevel', game.level);
+      const level = Math.min(game.level + 1, 10);
+      this.sendAction('goToLevel', level);
     },
 
     previousLevel: function(){
       const game = this.get('game');
-      game.level = Math.max(game.level - 1, 1);
-      this.sendAction('goToLevel', game.level);
+      const level = Math.max(game.level - 1, 1);
+      this.sendAction('goToLevel', level);
     }
   }
 });

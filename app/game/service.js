@@ -9,17 +9,17 @@ export default Ember.Service.extend({
   audioEnabled: false,
   paused: false,
   gameOver: false,
+  level: null,
   cache: { images: {} },
   unscaledDimensions: { width: 320, height: 240 },
   adjustedDimensions: { width: 320, height: 240 },
   yOffset: 0,
   xOffset: 0,
 
-  configureGame(canvas, level, component) {
+  configureGame(canvas, component) {
     Sprite.prototype.game = this;
     this.canvas = canvas;
     this.component = component;
-    this.level = level;
     this.context = this.canvas.getContext('2d');
     this.configureCanvas(this.unscaledDimensions);
 
@@ -33,11 +33,17 @@ export default Ember.Service.extend({
     this.configureInitialGameState();
   },
 
+  changeLevel(level) {
+    this.level = level;
+    this.sendGameEvent('changed-level', level);
+  },
+
   play() {
     this.paused = false;
+
+    this.main();
     this.removeEventListeners();
     this.addEventListeners();
-    this.main();
   },
 
   pause() {
