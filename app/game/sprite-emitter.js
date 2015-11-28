@@ -5,10 +5,12 @@ import Pizza from './pizza';
 import CatBed from './catbed';
 
 export default class {
+
   constructor(context) {
     this.context = context;
     this.sprites = [];
     this.drawCounter = 0;
+    this.level = null;
     this.sceneryClasses = [Flower, Cloud, Bird];
   }
 
@@ -21,6 +23,21 @@ export default class {
   get catBeds() {
     return this.sprites.filter(function(sprite) {
       return sprite.type === 'catbed';
+    });
+  }
+
+  changeLevel(level) {
+    this.level = level;
+
+    if (this.level === 'demo') {
+      this.deleteCatBeds();
+    }
+  }
+
+  deleteCatBeds() {
+    this.catBeds.forEach((catBed) => {
+      var index = this.sprites.indexOf(catBed);
+      this.sprites.splice(index, 1);
     });
   }
 
@@ -56,7 +73,10 @@ export default class {
   emitSprites() {
     this.emitScenery();
     this.emitPizza();
-    this.emitCatBed();
+
+    if (this.level !== 'demo') {
+      this.emitCatBed();
+    }
   }
 
   emitScenery() {

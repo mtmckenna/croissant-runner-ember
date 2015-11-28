@@ -29,12 +29,18 @@ export default Ember.Service.extend({
 
     this.croissant = new Croissant(this.context, this.adjustedDimensions);
     this.spriteEmitter = new SpriteEmitter(this.context);
+    this.spriteEmitter.level = this.level;
     this.configureEventListeners();
     this.configureInitialGameState();
   },
 
   changeLevel(level) {
     this.level = level;
+
+    if (this.spriteEmitter) {
+      this.spriteEmitter.changeLevel(level);
+    }
+
     this.sendGameEvent('changed-level', level);
   },
 
@@ -233,7 +239,10 @@ export default Ember.Service.extend({
     if (this.gameOver) { return; }
     this.spriteEmitter.update();
     this.croissant.update();
-    this.checkCollisions();
+
+    if (this.level !== 'demo') {
+      this.checkCollisions();
+    }
   },
 
  drawGround() {

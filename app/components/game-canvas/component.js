@@ -58,7 +58,6 @@ export default Ember.Component.extend({
     } else if (eventName === 'new-hi-score') {
       this.set('hiScore', data);
     } else if (eventName ==='changed-level') {
-      console.log(`level change event received: ${data}`);
     }
   },
 
