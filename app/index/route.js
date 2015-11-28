@@ -10,6 +10,8 @@ export default Ember.Route.extend({
   afterModel(level) {
     const game = this.get('game');
     game.changeLevel(level);
+    game.score = 0;
+    game.sendGameEvent('updated-pizza-count', 0);
   },
 
   renderTemplate: function() {
