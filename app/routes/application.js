@@ -1,4 +1,13 @@
+import Ember from 'ember';
+
 export default Ember.Route.extend({
+  session: Ember.inject.service(),
+  currentUser: Ember.computed.alias('session.currentUser'),
+
+  afterModel() {
+    this.get('session').initializeFromCookie();
+  },
+
   title: function(tokens) {
    var defaultTitle = 'Croissant the Pizza Cat';
    var base = 'CPC';

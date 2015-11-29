@@ -191,6 +191,7 @@ export default Ember.Service.extend({
 
     this.spriteEmitter.deleteAllSprites();
     this.score = 0;
+    this.sendGameEvent('updated-pizza-count', this.score);
     this.gameOver = false;
     this.stopAudio('nap');
   },

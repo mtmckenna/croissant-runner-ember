@@ -11,7 +11,7 @@ module.exports = function(environment) {
       'default-src': "'none'",
       'script-src': "'self' www.google-analytics.com 'unsafe-inline'",
       'font-src': "'self'",
-      'connect-src': "'self' www.google-analytics.com",
+      'connect-src': "'self' www.google-analytics.com https://api.parse.com",
       'img-src': "'self' www.google-analytics.com",
       'style-src': "'self'",
       'media-src': "'self'"
@@ -62,6 +62,10 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
   }
+
+  ENV.parseApplicationId = process.env.PARSE_APPLICATION_ID;
+  ENV.parseJavascriptKey = process.env.PARSE_JAVASCRIPT_KEY;
+
 
   return ENV;
 };
