@@ -5,5 +5,5 @@ export default DS.Model.extend({
   initials: DS.attr('string'),
   hiScore: DS.attr('number'),
   username: DS.attr('string'),
-  password: DS.attr('string'),
+  password: DS.attr('string')
 });

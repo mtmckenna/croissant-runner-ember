@@ -234,6 +234,7 @@ export default Ember.Service.extend({
     this.drawWorld();
     this.gameOver = true;
     this.setHiScore(this.score);
+    this.sendGameEvent('game-over');
   },
 
   update() {

@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   game: Ember.inject.service(),
+  session: Ember.inject.service(),
+  currentUser: Ember.computed.alias('session.currentUser'),
 
   hiScore: 0,
   pizzaCount: 0,
@@ -57,7 +59,10 @@ export default Ember.Component.extend({
       this.set('pizzaCount', data);
     } else if (eventName === 'new-hi-score') {
       this.set('hiScore', data);
+      this.get('currentUser').set('hiScore', data);
     } else if (eventName ==='changed-level') {
+    } else if (eventName ==='game-over') {
+      this.get('currentUser').save();
     }
   },
 

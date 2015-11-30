@@ -3,12 +3,26 @@ import config from '../config/environment';
 
 export default DS.JSONAPIAdapter.extend({
   host: 'https://api.parse.com',
-  namespace: '1/',
+  namespace: '1',
   headers: {
     "Accept":"application/json",
     "Content-Type":"application/json",
     "X-Parse-Application-Id": config.parseApplicationId,
     "X-Parse-JAVASCRIPT-Key": config.parseJavascriptKey
+  },
+
+  loginUser(username, password) {
+    const url = `${this.host}/1/login`;
+    const data = {
+      username: username,
+      password: password
+    };
+
+    return Ember.$.ajax(url, {
+      method: 'GET',
+      data: data,
+      headers: this.get('headers')
+    });
   },
 
   createRecord(store, type, snapshot) {
@@ -30,8 +44,6 @@ export default DS.JSONAPIAdapter.extend({
 
     var id = snapshot.id;
     var url = this.buildURL(type.modelName, id, snapshot, 'updateRecord');
-
-    data = this.formattedData(data);
 
     return this.ajax(url, 'PUT', { data: data });
   }

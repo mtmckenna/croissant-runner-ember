@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   session: Ember.inject.service(),
-  currentUser: Ember.computed.alias('session.currentUser'),
 
   afterModel() {
     this.get('session').initializeFromCookie();

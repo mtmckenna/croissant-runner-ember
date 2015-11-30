@@ -8,15 +8,19 @@ export default Ember.Service.extend({
   logout() {
     this.set('currentUser', null)
     Cookies.remove('userId')
+    Cookies.remove('username')
     Cookies.remove('password')
   },
 
   initializeFromCookie: function() {
+    console.log('init');
     let currentUser = null;
-    var userId = Cookies.get('userId');
+    const userId = Cookies.get('userId');
+    const username = Cookies.get('username');
+    const password = Cookies.get('password');
 
-    if (userId && userId !=='null') {
-      this.getUserFromParse(userId);
+    if (username && username !=='null') {
+      this.loginUserToParse(username, password);
     } else {
       this.createUser();
     }
@@ -25,13 +29,22 @@ export default Ember.Service.extend({
   setCurrentUser(user) {
     if (!user) { return; }
     Cookies.set('userId', user.get('id'))
-    Cookies.set('password', user.get('password'))
+    Cookies.set('username', user.get('username'))
+
+    if (user.get('password')) {
+      Cookies.set('password', user.get('password'))
+    }
+
     this.set('currentUser', user)
   },
 
-  getUserFromParse(userId) {
-    this.get('store').findRecord('user', userId).then((user) => {
-      this.setCurrentUser(user);
+  loginUserToParse(username, password) {
+    this.get('store').adapterFor('user').loginUser(username, password).
+      then((pushData) => {
+        const store = this.get('store');
+        store.pushPayload('user', pushData);
+        const user = store.peekRecord('user', pushData.objectId);
+        this.setCurrentUser(user);
     });
   },
 
