@@ -4,6 +4,7 @@ import Ember from 'ember';
 export default Ember.Service.extend({
   currentUser: null,
   store: Ember.inject.service(),
+  initialized: false,
 
   logout() {
     this.set('currentUser', null)
@@ -13,7 +14,8 @@ export default Ember.Service.extend({
   },
 
   initializeFromCookie: function() {
-    console.log('init');
+    if (this.get('initialized')) { return; }
+    this.set('initialized', true);
     let currentUser = null;
     const userId = Cookies.get('userId');
     const username = Cookies.get('username');
@@ -39,13 +41,17 @@ export default Ember.Service.extend({
   },
 
   loginUserToParse(username, password) {
-    this.get('store').adapterFor('user').loginUser(username, password).
-      then((pushData) => {
-        const store = this.get('store');
-        store.pushPayload('user', pushData);
-        const user = store.peekRecord('user', pushData.objectId);
+    const modelClass = 'user';
+    const store = this.get('store');
+    store.adapterFor(modelClass).loginUser(username, password).
+      then((data) => {
+        var serializer = store.serializerFor(modelClass);
+        var json = serializer.normalizeSingleResponse(store, modelClass, data, data.id);
+        store.push(json);
+
+        const user = store.peekRecord('user', json.data.id);
         this.setCurrentUser(user);
-    });
+      });
   },
 
   createUser() {

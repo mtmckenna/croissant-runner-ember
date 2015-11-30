@@ -1,15 +1,26 @@
 import DS from 'ember-data';
 import config from '../config/environment';
 
-export default DS.JSONAPIAdapter.extend({
+export default DS.RESTAdapter.extend({
+  session: Ember.inject.service(),
+  currentUser: Ember.computed.alias('session.currentUser'),
   host: 'https://api.parse.com',
   namespace: '1',
   headers: {
-    "Accept":"application/json",
-    "Content-Type":"application/json",
-    "X-Parse-Application-Id": config.parseApplicationId,
-    "X-Parse-JAVASCRIPT-Key": config.parseJavascriptKey
+      "Accept":"application/json",
+      "Content-Type":"application/json",
+      "X-Parse-Application-Id": config.parseApplicationId,
+      "X-Parse-JAVASCRIPT-Key": config.parseJavascriptKey
   },
+
+  loggedInHeaders: Ember.computed(function() {
+    const headers = this.get('headers');
+    const sessionHeader = {
+      "X-Parse-Session-Token": this.get('currentUser').get('sessionToken')
+    };
+
+    return Ember.$.extend({}, headers, sessionHeader);
+  }),
 
   loginUser(username, password) {
     const url = `${this.host}/1/login`;
@@ -27,7 +38,8 @@ export default DS.JSONAPIAdapter.extend({
 
   createRecord(store, type, snapshot) {
     const url = `${this.host}/1/users`;
-    const data = snapshot.attributes();
+    let data = snapshot.attributes();
+    data.password = snapshot.record.password;
 
     return Ember.$.ajax(url, {
       method: 'POST',
@@ -45,6 +57,10 @@ export default DS.JSONAPIAdapter.extend({
     var id = snapshot.id;
     var url = this.buildURL(type.modelName, id, snapshot, 'updateRecord');
 
-    return this.ajax(url, 'PUT', { data: data });
+    return Ember.$.ajax(url, {
+      method: 'PUT',
+      data: JSON.stringify(data),
+      headers: this.get('loggedInHeaders')
+    });
   }
 });
