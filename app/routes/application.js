@@ -4,8 +4,12 @@ export default Ember.Route.extend({
   session: Ember.inject.service(),
   currentUser: Ember.computed.alias('session.currentUser'),
 
-  activate() {
+  init() {
     this.get('session').initializeFromCookie();
+  },
+
+  setupController: function(controller, model) {
+    controller.set('currentUser', this.get('currentUser'));
   },
 
   title: function(tokens) {

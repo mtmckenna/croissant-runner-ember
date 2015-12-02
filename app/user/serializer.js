@@ -17,7 +17,7 @@ export default DS.RESTSerializer.extend({
   },
 
   normalizeUpdateRecordResponse (store, primaryModelClass, payload, id, requestType) {
-    const data = { data: null };
+    const data = { user: null };
     return this._normalizeResponse(store, primaryModelClass, data, id, requestType, true);
   },
 

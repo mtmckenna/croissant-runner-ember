@@ -5,8 +5,8 @@ export default Ember.Component.extend({
   session: Ember.inject.service(),
   currentUser: Ember.computed.alias('session.currentUser'),
 
-  hiScore: 0,
   pizzaCount: 0,
+  hiScore: Ember.computed.alias('session.currentUser.hiScore'),
 
   didInsertElement() {
     this.configureCanvas();
@@ -25,6 +25,11 @@ export default Ember.Component.extend({
     this.removeEventListeners();
   },
 
+  currentUserDidChange: function() {
+    const game = this.get('game');
+    game.setHiScore(this.get('hiScore'));
+  }.observes('currentUser'),
+
   configureCanvas() {
     var canvas = this.get('element').getElementsByClassName('js-game')[0];
     this.set('canvas', canvas);
@@ -33,7 +38,7 @@ export default Ember.Component.extend({
   configureGame() {
     const canvas = this.get('canvas');
     const game = this.get('game');
-
+    const currentUser = this.get('currentUser');
     game.configureGame(canvas, this);
   },
 
@@ -58,11 +63,16 @@ export default Ember.Component.extend({
     if (eventName === 'updated-pizza-count') {
       this.set('pizzaCount', data);
     } else if (eventName === 'new-hi-score') {
-      this.set('hiScore', data);
-      this.get('currentUser').set('hiScore', data);
+      this.setHiScore(data);
     } else if (eventName ==='changed-level') {
     } else if (eventName ==='game-over') {
       this.get('currentUser').save();
+    }
+  },
+
+  setHiScore(score) {
+    if (score > this.get('hiScore')) {
+      this.set('hiScore', score);
     }
   },
 

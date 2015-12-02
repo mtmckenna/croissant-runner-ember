@@ -2,7 +2,9 @@ import Ember from 'ember';
 
 // https://www.emberscreencasts.com/posts/84-remember-your-session-with-cookies#code
 export default Ember.Service.extend({
-  currentUser: null,
+  currentUser: Ember.computed(function() {
+    return this.get('store').createRecord('user');
+  }),
   store: Ember.inject.service(),
   initialized: false,
 
@@ -16,6 +18,7 @@ export default Ember.Service.extend({
   initializeFromCookie: function() {
     if (this.get('initialized')) { return; }
     this.set('initialized', true);
+
     let currentUser = null;
     const userId = Cookies.get('userId');
     const username = Cookies.get('username');
@@ -49,8 +52,8 @@ export default Ember.Service.extend({
         var json = serializer.normalizeSingleResponse(store, modelClass, data, data.id);
         store.push(json);
 
-        const user = store.peekRecord('user', json.data.id);
-        this.setCurrentUser(user);
+        const parseUser = store.peekRecord('user', json.data.id);
+        this.setCurrentUser(parseUser);
       });
   },
 

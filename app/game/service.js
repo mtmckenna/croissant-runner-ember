@@ -15,6 +15,9 @@ export default Ember.Service.extend({
   adjustedDimensions: { width: 320, height: 240 },
   yOffset: 0,
   xOffset: 0,
+  score: 0,
+  hiScore: 0,
+  drawCounter: 0,
 
   configureGame(canvas, component) {
     Sprite.prototype.game = this;
@@ -67,9 +70,6 @@ export default Ember.Service.extend({
 
   configureInitialGameState() {
     if (this.initializedAlready) { return; }
-    this.drawCounter = 0;
-    this.score = 0;
-    this.hiScore = 0;
     this.userHasInteracted = false;
     this.gameOver = false;
     this.initializedAlready = true;
