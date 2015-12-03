@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  initials: DS.attr('string', { defaultValue: 'MTM' } ),
-  hiScore: DS.attr('number', { defaultValue: 2 })
+  initials: DS.attr('string'),
+  score: DS.attr('number', { defaultValue: 0 })
 });

@@ -2,9 +2,14 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   game: Ember.inject.service(),
-
+  session: Ember.inject.service(),
   hiScore: 0,
   pizzaCount: 0,
+
+  init() {
+    this._super(...arguments);
+    this.set('hiScore', this.get('session').get('previousHiScore') || 0);
+  },
 
   didInsertElement() {
     this.configureCanvas();
@@ -55,10 +60,14 @@ export default Ember.Component.extend({
   gameEventReceived(eventName, data) {
     if (eventName === 'updated-pizza-count') {
       this.set('pizzaCount', data);
-    } else if (eventName === 'new-hi-score') {
-      this.set('hiScore', data);
-    } else if (eventName ==='changed-level') {
+      if (data > this.get('hiScore')) {
+        this.set('hiScore', data);
+      }
+    } else if (eventName === 'changed-level') {
+    } else if (eventName === 'game-over') {
+      this.get('session').saveNewHiScore(data);
     }
+
   },
 
   _playOrPause(e) {

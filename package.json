@@ -46,6 +46,7 @@
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.3",
     "ember-metrics": "^0.5.1",
+    "js-cookie": "2.0.4",
     "liquid-fire": "0.21.3"
   }
 }

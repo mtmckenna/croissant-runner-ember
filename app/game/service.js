@@ -69,7 +69,6 @@ export default Ember.Service.extend({
     if (this.initializedAlready) { return; }
     this.drawCounter = 0;
     this.score = 0;
-    this.hiScore = 0;
     this.userHasInteracted = false;
     this.gameOver = false;
     this.initializedAlready = true;
@@ -80,13 +79,6 @@ export default Ember.Service.extend({
       pizza: new SoundEffect('assets/audio/pizza.wav', audioContext),
       jump: new SoundEffect('assets/audio/jump.wav', audioContext),
       nap: new SoundEffect('assets/audio/nap.wav', audioContext, true)
-    }
-  },
-
-  setHiScore(score) {
-    if (score > this.hiScore) {
-      this.hiScore = score;
-      this.sendGameEvent('new-hi-score', this.score);
     }
   },
 
@@ -215,7 +207,6 @@ export default Ember.Service.extend({
 
     this.spriteEmitter.deleteSprites(pizzas);
     this.score += pizzas.length;
-    this.setHiScore(this.score);
 
     this.sendGameEvent('updated-pizza-count', this.score);
 
@@ -228,11 +219,11 @@ export default Ember.Service.extend({
   },
 
   goToGameOver(catBed) {
+    this.sendGameEvent('game-over', this.score);
     catBed.switchToSleepingCroissantImage();
     this.playAudio('nap');
     this.drawWorld();
     this.gameOver = true;
-    this.setHiScore(this.score);
   },
 
   update() {
@@ -255,7 +246,6 @@ export default Ember.Service.extend({
   },
 
   drawWorld() {
-    this.setHiScore(this.score);
     this.context.clearRect(0, 0, this.adjustedDimensions.width, this.adjustedDimensions.height);
     this.drawGround();
     this.spriteEmitter.draw();

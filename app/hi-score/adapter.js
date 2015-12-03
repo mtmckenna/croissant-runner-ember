@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 import config from '../config/environment';
 
-export default DS.RESTAdapter.extend({
+export default DS.JSONAPIAdapter.extend({
   host: 'https://api.parse.com',
   namespace: '1/classes',
   headers: {
@@ -9,5 +9,10 @@ export default DS.RESTAdapter.extend({
     "Content-Type":"application/json",
     "X-Parse-Application-Id": config.parseApplicationId,
     "X-Parse-JAVASCRIPT-Key": config.parseJavascriptKey
+  },
+
+  pathForType: function(modelName) {
+    var underscored = Ember.String.underscore(modelName);
+    return Ember.String.pluralize(underscored);
   }
 });
