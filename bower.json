@@ -11,7 +11,9 @@
     "jquery": "^1.11.3",
     "loader.js": "ember-cli/loader.js#3.2.1",
     "qunit": "~1.18.0",
-    "ember-data": "~2.1.0"
+    "ember-data": "~2.1.0",
+    "moment": ">= 2.8.0",
+    "moment-timezone": ">= 0.1.0"
   },
   "devDependencies": {
     "js-cookie": "~2.0.4"

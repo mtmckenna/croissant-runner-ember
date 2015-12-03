@@ -17,6 +17,7 @@ canvas {
 
 .liquid-child {
   height: 100%;
+  overflow: scroll;
 }
 
 .liquid-container-full-screen {
@@ -90,6 +91,20 @@ canvas {
     background-color: rgba(0, 153, 255, 0.5);
     text-decoration: none;
   }
+}
+
+.hi-scores-header {
+  color: #fff;
+}
+
+.hi-scores-table {
+  color: #fff;
+  font-size: 20px;
+  list-style: none;
+  text-align: left;
+  padding: 0 0 0 15px;
+  margin: 0;
+  width: 100%;
 }
 
 .index--container {

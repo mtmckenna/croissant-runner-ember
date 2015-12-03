@@ -1,0 +1,21 @@
+<div class='game-menu'>
+  <ul class='game-menu--options'>
+    <li>
+      {{#link-to 'play.menu.index'}}
+      <div class='game-menu--button'>BACK</div>
+      {{/link-to}}
+    </li>
+</ul>
+
+<span class='hi-scores-header'>LATEST HI SCORES</span>
+
+<table class='hi-scores-table'>
+  {{#each model.arrangedContent as |hiScore|}}
+  <tr>
+    <td>{{hiScore.initials}}</td>
+    <td>{{hiScore.score}}</td>
+    <td>{{moment-from-now hiScore.createdAt}}</td>
+  </tr>
+  {{/each}}
+</table>
+</div>

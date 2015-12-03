@@ -12,6 +12,17 @@ export default DS.RESTSerializer.extend({
     return payload;
   },
 
+  normalizeArrayResponse(store, primaryModelClass, payload) {
+    payload =  { data: this.formattedRecords(payload) };
+    return payload;
+  },
+
+  formattedRecords: function(records) {
+    return records.results.map((record) => {
+      return this.formattedRecord(record);
+    });
+  },
+
   formattedRecord(record) {
     let newRecord = {};
     newRecord.attributes = record;
