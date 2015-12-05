@@ -8,18 +8,21 @@ export default Ember.Service.extend({
   }).volatile(),
 
   previousInitials: Ember.computed(function() {
-    Cookies.get('initials');
+    return Cookies.get('initials');
   }).volatile(),
 
-  saveNewHiScore(score, initials) {
+  saveNewInitials(initials) {
+    Cookies.set('initials', initials);
+  },
+
+  saveNewHiScore(score) {
     if (score < this.get('previousHiScore')) { return; }
 
     Cookies.set('hiScore', score);
-    Cookies.set('initials', initials);
 
     let hiScore = this.get('store').createRecord('hi-score', {
       score: score,
-      initials: initials
+      initials: this.get('previousInitials') || 'MJJ'
     });
 
     hiScore.save();

@@ -24,6 +24,7 @@ Router.map(function() {
   this.route('play', { path: 'play/:level_id' }, function() {
     this.route('menu', function() {
       this.route('hi-scores');
+      this.route('initials');
     });
   });
 });

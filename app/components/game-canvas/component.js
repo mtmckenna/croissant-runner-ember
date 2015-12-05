@@ -40,6 +40,21 @@ export default Ember.Component.extend({
     game.configureGame(canvas, this);
   },
 
+  gameOver(score) {
+    if (!this.get('session').get('previousInitials')) {
+      this.sendAction('enterInitialsAndSaveHiScore', score);
+    } else {
+      this.get('session').saveNewHiScore(score);
+    }
+  },
+
+  scoreUpdated(score) {
+    this.set('pizzaCount', score);
+    if (score > this.get('hiScore')) {
+      this.set('hiScore', score);
+    }
+  },
+
   configureEventListeners() {
     this.set('playOrPause', this._playOrPause.bind(this));
     this.set('resizeCanvas', this._resizeCanvas.bind(this));
@@ -59,15 +74,11 @@ export default Ember.Component.extend({
 
   gameEventReceived(eventName, data) {
     if (eventName === 'updated-pizza-count') {
-      this.set('pizzaCount', data);
-      if (data > this.get('hiScore')) {
-        this.set('hiScore', data);
-      }
+      this.scoreUpdated(data);
     } else if (eventName === 'changed-level') {
     } else if (eventName === 'game-over') {
-      this.get('session').saveNewHiScore(data);
+      this.gameOver(data);
     }
-
   },
 
   _playOrPause(e) {

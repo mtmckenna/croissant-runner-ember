@@ -56,7 +56,7 @@ export default Ember.Service.extend({
     this.paused = true;
     window.cancelAnimationFrame(this.animReq);
     this.animReq =  null;
-    this.removeEventListeners()
+    this.removeEventListeners();
   },
 
   main() {
@@ -79,7 +79,7 @@ export default Ember.Service.extend({
       pizza: new SoundEffect('assets/audio/pizza.wav', audioContext),
       jump: new SoundEffect('assets/audio/jump.wav', audioContext),
       nap: new SoundEffect('assets/audio/nap.wav', audioContext, true)
-    }
+    };
   },
 
   resizeCanvasWithViewportDimensions(viewportDimensions) {
@@ -158,7 +158,7 @@ export default Ember.Service.extend({
 
   _jump() {
     const didJump = this.croissant.jump();
-    if (didJump) { this.playAudio('jump') };
+    if (didJump) { this.playAudio('jump'); }
   },
 
   // iOS web audio is such misery.
@@ -183,6 +183,7 @@ export default Ember.Service.extend({
 
     this.spriteEmitter.deleteAllSprites();
     this.score = 0;
+    this.sendGameEvent('updated-pizza-count', this.score);
     this.gameOver = false;
     this.stopAudio('nap');
   },

@@ -5,5 +5,11 @@ export default Ember.Route.extend({
    var hasTokens = tokens && tokens.length;
 
    return hasTokens ? `${base} - ${tokens.reverse().join(' - ')}` : defaultTitle;
+  },
+
+  actions: {
+    enterInitialsAndSaveHiScore: function() {
+      this.transitionTo('play.menu.initials', {queryParams: {saveHiScore: true}});
+    }
   }
 });
