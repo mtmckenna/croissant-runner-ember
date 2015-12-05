@@ -9,7 +9,7 @@ export default Ember.Route.extend({
 
   actions: {
     enterInitialsAndSaveHiScore: function() {
-      this.transitionTo('play.menu.initials', {queryParams: {saveHiScore: true}});
+      this.transitionTo('play.menu.initials', {queryParams: {backRoute: 'play.index'}});
     }
   }
 });

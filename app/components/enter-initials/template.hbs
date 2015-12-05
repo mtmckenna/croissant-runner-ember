@@ -1,8 +1,8 @@
 <ul class='game-menu--options'>
   <li>
-    {{#link-to 'play.menu.index'}}
-    <div class='game-menu--button'>BACK</div>
-    {{/link-to}}
+    <a {{action 'goBack' backRoute}}>
+      <div class='game-menu--button'>BACK</div>
+    </a>
   </li>
 </ul>
 

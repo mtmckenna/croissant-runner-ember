@@ -13,4 +13,10 @@ export default Ember.Component.extend({
     let initials = this.get('initials');
     this.get('session').saveNewInitials(initials);
   }.observes('initials').on('init'),
+
+  actions: {
+    goBack: function(route) {
+      this.sendAction('goBack', route);
+    }
+  }
 });
