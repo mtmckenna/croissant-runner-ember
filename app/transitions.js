@@ -10,7 +10,7 @@ export default function(){
 
   this.transition(
     this.toRoute('play.menu'),
-    this.fromRoute('play'),
+    this.fromRoute('play.index'),
     this.use('toLeft'),
     this.reverse('toRight'),
   );

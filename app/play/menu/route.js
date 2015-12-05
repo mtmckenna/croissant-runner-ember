@@ -17,12 +17,5 @@ export default Ember.Route.extend({
     goToLevel: function(level) {
       this.transitionTo('play', level);
     }
-  },
-
-  renderTemplate: function() {
-    this.render('play.menu', {
-      outlet: 'game-overlay',
-      into: 'application'
-    });
   }
 });

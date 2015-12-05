@@ -14,12 +14,5 @@ export default Ember.Route.extend({
   afterModel(level, transition) {
     const game = this.get('game');
     game.changeLevel(level);
-  },
-
-  renderTemplate: function() {
-    this.render('play', {
-      outlet: 'game-overlay',
-      into: 'application'
-    });
   }
 });

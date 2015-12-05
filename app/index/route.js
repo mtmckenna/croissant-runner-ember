@@ -12,12 +12,5 @@ export default Ember.Route.extend({
     game.changeLevel(level);
     game.score = 0;
     game.sendGameEvent('updated-pizza-count', 0);
-  },
-
-  renderTemplate: function() {
-    this.render('index', {
-      outlet: 'game-overlay',
-      into: 'application'
-    });
   }
 });
