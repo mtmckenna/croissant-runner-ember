@@ -9,7 +9,7 @@
 <span class='game-menu--header'>LATEST HI SCORES</span>
 
 <table class='hi-scores-table'>
-  {{#each model.arrangedContent as |hiScore|}}
+  {{#each model as |hiScore|}}
   <tr>
     <td>{{hiScore.initials}}</td>
     <td>{{hiScore.score}}</td>
