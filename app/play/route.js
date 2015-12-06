@@ -11,7 +11,7 @@ export default Ember.Route.extend({
     return parseInt(params.level_id);
   },
 
-  afterModel(level, transition) {
+  afterModel(level) {
     const game = this.get('game');
     game.changeLevel(level);
   }

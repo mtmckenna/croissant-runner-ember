@@ -66,7 +66,7 @@ export default class {
 
   shouldCreateSprite(minFrequency, percentageChance = 1.0) {
     var minAmountOfTime = !(this.drawCounter % minFrequency);
-    var lucky = !!(percentageChance > Math.random());
+    var lucky = (percentageChance > Math.random());
     return minAmountOfTime && lucky;
   }
 

@@ -8,7 +8,7 @@ export function adjustedPositionForSkySprite(game, pos) {
   return {
     x: pos.x + game.xOffset,
     y: pos.y * scaleFactor
-  }
+  };
 }
 
 

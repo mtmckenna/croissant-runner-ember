@@ -7,7 +7,7 @@ export default Ember.Component.extend({
   init: function() {
     this._super(...arguments);
     const game = this.get('game');
-    this.set('audioEnabled', game.audioEnabled)
+    this.set('audioEnabled', game.audioEnabled);
   },
 
   audioText: Ember.computed('audioEnabled', function() {

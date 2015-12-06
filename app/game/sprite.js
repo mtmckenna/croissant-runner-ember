@@ -16,7 +16,7 @@ export default class {
     return {
       x: this.pos.x + this.game.xOffset,
       y: this.pos.y + this.game.yOffset
-    }
+    };
   }
 
   cacheImage(path) {
@@ -34,7 +34,7 @@ export default class {
   }
 
   get currentFrame() {
-    if (!(this.drawCounter % 10)) {
+    if ((this.drawCounter % 10) === 0) {
       this._currentFrame = (this._currentFrame + 1) % 2;
     }
 

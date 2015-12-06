@@ -1,3 +1,5 @@
+import Ember from 'ember';
+
 export default Ember.Route.extend({
   title: function(tokens) {
    var defaultTitle = 'Croissant the Pizza Cat';
