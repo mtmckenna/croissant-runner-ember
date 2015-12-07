@@ -84,7 +84,7 @@ export default Ember.Component.extend({
   _playOrPause(e) {
     const game = this.get('game');
     if (e.keyCode === 67) {
-      if(this.get('animReq')) {
+      if(this.get('game').get('animReq')) {
         game.pause();
       } else {
         game.play();

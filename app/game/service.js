@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import Sprite from './sprite';
 import Croissant from './croissant';
+import Sun from './sun';
 import SpriteEmitter from './sprite-emitter';
 import SoundEffect from './sound-effect';
 
@@ -28,6 +29,7 @@ export default Ember.Service.extend({
     this.configureAudioEffects(this.audioContext);
 
     this.croissant = new Croissant(this.context, this.adjustedDimensions);
+    this.sun = new Sun(this.context, this.adjustedDimensions);
     this.spriteEmitter = new SpriteEmitter(this.context);
     this.spriteEmitter.level = this.level;
     this.configureEventListeners();
@@ -232,9 +234,10 @@ export default Ember.Service.extend({
     this.spriteEmitter.update();
     this.croissant.update();
 
-    if (this.level !== 'demo') {
-      this.checkCollisions();
-    }
+    if (this.level === 'demo') { return; }
+
+    this.checkCollisions();
+    this.sun.pos.y = this.sun.initialPosition.y + (this.level - 1) * 55;
   },
 
  drawGround() {
@@ -248,6 +251,7 @@ export default Ember.Service.extend({
 
   drawWorld() {
     this.context.clearRect(0, 0, this.adjustedDimensions.width, this.adjustedDimensions.height);
+    this.sun.draw();
     this.drawGround();
     this.spriteEmitter.draw();
   },
