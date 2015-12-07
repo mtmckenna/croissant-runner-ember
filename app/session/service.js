@@ -17,14 +17,28 @@ export default Ember.Service.extend({
     Cookies.set('initials', initials);
   },
 
+  setPendingHiScore(score) {
+    Cookies.set('pendingHiScore', score);
+  },
+
+  savePendingHiScore() {
+    const score = Cookies.get('pendingHiScore');
+    const initials = this.get('previousInitials') || 'MJJ';
+    this.saveHiScore(score, initials);
+    Cookies.remove('pendingHiScore');
+  },
+
   saveNewHiScore(score) {
     if (score < this.get('previousHiScore')) { return; }
-
     Cookies.set('hiScore', score);
+    const initials = this.get('previousInitials') || 'MJJ';
+    this.saveHiScore(score, initials);
+  },
 
-    let hiScore = this.get('store').createRecord('hi-score', {
+  saveHiScore(score, initials) {
+    const hiScore = this.get('store').createRecord('hi-score', {
       score: score,
-      initials: this.get('previousInitials') || 'MJJ'
+      initials: initials
     });
 
     hiScore.save();
