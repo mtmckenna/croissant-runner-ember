@@ -19,18 +19,6 @@ export default Ember.Component.extend({
       const game = this.get('game');
       game.audioEnabled = !game.audioEnabled;
       this.set('audioEnabled', game.audioEnabled);
-    },
-
-    nextLevel: function(){
-      const game = this.get('game');
-      const level = Math.min(game.level + 1, 5);
-      this.sendAction('goToLevel', level);
-    },
-
-    previousLevel: function(){
-      const game = this.get('game');
-      const level = Math.max(game.level - 1, 1);
-      this.sendAction('goToLevel', level);
     }
   }
 });

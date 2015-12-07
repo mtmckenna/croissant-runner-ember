@@ -47,8 +47,6 @@ export default Ember.Service.extend({
     if (this.spriteEmitter) {
       this.spriteEmitter.changeLevel(level);
     }
-
-    this.sendGameEvent('changed-level', level);
   },
 
   play() {

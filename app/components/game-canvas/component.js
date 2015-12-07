@@ -41,6 +41,7 @@ export default Ember.Component.extend({
   },
 
   gameOver(score) {
+    this.sendAction('changeLevel', 1);
     if (!this.get('session').get('previousInitials')) {
       this.sendAction('enterInitialsAndSaveHiScore', score);
     } else {
@@ -52,6 +53,13 @@ export default Ember.Component.extend({
     this.set('pizzaCount', score);
     if (score > this.get('hiScore')) {
       this.set('hiScore', score);
+    }
+
+    const newLevel = Math.max(1, parseInt(Math.log10(score)) + 1)
+    const currentLevel = parseInt(this.get('game').level);
+
+    if (!!newLevel && newLevel !== currentLevel) {
+      this.sendAction('changeLevel', newLevel);
     }
   },
 
@@ -75,7 +83,6 @@ export default Ember.Component.extend({
   gameEventReceived(eventName, data) {
     if (eventName === 'updated-pizza-count') {
       this.scoreUpdated(data);
-    } else if (eventName === 'changed-level') {
     } else if (eventName === 'game-over') {
       this.gameOver(data);
     }

@@ -14,6 +14,10 @@ export default Ember.Route.extend({
     enterInitialsAndSaveHiScore: function(score) {
       this.get('session').setPendingHiScore(score);
       this.transitionTo('play.menu.initials', {queryParams: {backRoute: 'play.index'}});
+    },
+
+    changeLevel: function(newLevel){
+      this.transitionTo('play', newLevel);
     }
   }
 });
