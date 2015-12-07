@@ -113,6 +113,7 @@ canvas {
 
 .enter-initials--text-input {
   width: 100%;
+  box-sizing: border-box;
   text-align: center;
   font: 100px 'Lucida Console', Monaco, monospace;
   background: none;
