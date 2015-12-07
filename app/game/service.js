@@ -2,6 +2,7 @@ import Ember from 'ember';
 import Sprite from './sprite';
 import Croissant from './croissant';
 import Sun from './sun';
+import Moon from './moon';
 import SpriteEmitter from './sprite-emitter';
 import SoundEffect from './sound-effect';
 
@@ -30,6 +31,7 @@ export default Ember.Service.extend({
 
     this.croissant = new Croissant(this.context, this.adjustedDimensions);
     this.sun = new Sun(this.context, this.adjustedDimensions);
+    this.moon = new Moon(this.context, this.adjustedDimensions);
     this.spriteEmitter = new SpriteEmitter(this.context);
     this.spriteEmitter.level = this.level;
     this.configureEventListeners();
@@ -238,6 +240,7 @@ export default Ember.Service.extend({
 
     this.checkCollisions();
     this.sun.pos.y = this.sun.initialPosition.y + (this.level - 1) * 55;
+    this.moon.pos.y = this.moon.initialPosition.y - (this.level - 1) * 55;
   },
 
  drawGround() {
@@ -252,6 +255,7 @@ export default Ember.Service.extend({
   drawWorld() {
     this.context.clearRect(0, 0, this.adjustedDimensions.width, this.adjustedDimensions.height);
     this.sun.draw();
+    this.moon.draw();
     this.drawGround();
     this.spriteEmitter.draw();
   },
