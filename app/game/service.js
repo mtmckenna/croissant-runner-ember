@@ -5,6 +5,7 @@ import Sun from './sun';
 import Moon from './moon';
 import SpriteEmitter from './sprite-emitter';
 import SoundEffect from './sound-effect';
+import { colorLuminance } from './util';
 
 export default Ember.Service.extend({
   initializedAlready: false,
@@ -12,6 +13,8 @@ export default Ember.Service.extend({
   paused: false,
   gameOver: false,
   level: null,
+  initialBackgroundColor: '#66ccff',
+  currentBackgroundColor: '#66ccff',
   cache: { images: {} },
   unscaledDimensions: { width: 320, height: 240 },
   adjustedDimensions: { width: 320, height: 240 },
@@ -127,7 +130,6 @@ export default Ember.Service.extend({
   },
 
   configureCanvas(dimensions) {
-    this.canvas.style.backgroundColor = '#66ccff';
     this.canvas.width  = dimensions.width;
     this.canvas.height = dimensions.height;
   },
@@ -241,6 +243,7 @@ export default Ember.Service.extend({
     this.checkCollisions();
     this.sun.pos.y = this.sun.initialPosition.y + (this.level - 1) * 55;
     this.moon.pos.y = this.moon.initialPosition.y - (this.level - 1) * 55;
+    this.currentBackgroundColor = colorLuminance(this.initialBackgroundColor, (this.level - 1) / 5 * -1);
   },
 
  drawGround() {
@@ -253,7 +256,9 @@ export default Ember.Service.extend({
   },
 
   drawWorld() {
-    this.context.clearRect(0, 0, this.adjustedDimensions.width, this.adjustedDimensions.height);
+    this.context.fillStyle = this.currentBackgroundColor;
+    this.context.fillRect(0, 0, this.adjustedDimensions.width, this.adjustedDimensions.height);
+    this.canvas.style.backgroundColor = this.currentBackgroundColor;
     this.sun.draw();
     this.moon.draw();
     this.drawGround();
