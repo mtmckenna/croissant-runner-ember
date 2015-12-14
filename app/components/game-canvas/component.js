@@ -25,6 +25,7 @@ export default Ember.Component.extend({
   },
 
   willDestroyElement() {
+    this.get('game').pause();
     this.removeEventListeners();
   },
 
