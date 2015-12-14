@@ -1,4 +1,5 @@
 import { moduleForComponent, test } from 'ember-qunit';
+
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('game-canvas', 'Integration | Component | game canvas', {
@@ -16,3 +17,4 @@ test('it renders', function(assert) {
   assert.notEqual(this.$().text().indexOf('0 Pizzas'), -1);
   assert.notEqual(this.$().text().indexOf('Hi Score'), -1);
 });
+
