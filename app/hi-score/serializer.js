@@ -1,12 +1,6 @@
-import Ember from 'ember';
 import DS from 'ember-data';
 
-export default DS.RESTSerializer.extend({
-  // Messed up to modify this hash in place...
-  serializeIntoHash: function(hash, typeClass, snapshot, options) {
-    Ember.$.extend(hash, this.serialize(snapshot, options));
-  },
-
+export default DS.JSONSerializer.extend({
   normalizeSingleResponse(store, primaryModelClass, payload) {
     payload =  { data: this.formattedRecord(payload) };
     return payload;
