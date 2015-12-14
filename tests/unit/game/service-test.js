@@ -30,3 +30,32 @@ test('play', function(assert) {
   game.play();
   assert.equal(game.paused, false);
 });
+
+test('configureInitialGameState', function(assert) {
+  var game = this.subject();
+
+  game.drawCounter = -1;
+  game.score = -1;
+  game.userHasInteracted = -1;
+  game.gameOver = -1;
+  this.initializedAlready = -1;
+
+  game.configureInitialGameState();
+
+  assert.equal(game.drawCounter, 0);
+  assert.equal(game.score, 0);
+  assert.equal(game.userHasInteracted, false);
+  assert.equal(game.gameOver, false);
+  assert.equal(game.initializedAlready, true);
+});
+
+test('configureAudioEffects', function(assert) {
+  var game = this.subject();
+  var AudioContext = window.AudioContext || window.webkitAudioContext;
+  var audioContext = new AudioContext();
+  game.configureAudioEffects(audioContext);
+
+  assert.ok(game.audioHash.pizza);
+  assert.ok(game.audioHash.jump);
+  assert.ok(game.audioHash.nap);
+});
