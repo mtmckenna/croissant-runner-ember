@@ -88,16 +88,24 @@ export default Ember.Service.extend({
   },
 
   resizeCanvasWithViewportDimensions(viewportDimensions) {
-    if (viewportDimensions.width > viewportDimensions.height) {
-      this.resizeCanvasForLandscapeViewport(viewportDimensions);
-    } else {
-      this.resizeCanvasForPortraitViewport(viewportDimensions);
-    }
-
+    const adjustedDimensions = this.adjustedCanvasDimensionsFromViewportDimensions(viewportDimensions);
+    this.configureCanvas(adjustedDimensions);
     this.draw();
   },
 
-  resizeCanvasForPortraitViewport(viewportDimensions) {
+  adjustedCanvasDimensionsFromViewportDimensions(viewportDimensions) {
+    let adjustedDimensions = null;
+
+    if (viewportDimensions.width > viewportDimensions.height) {
+      adjustedDimensions = this.adjustedDimensionsForLandscapeViewport(viewportDimensions);
+    } else {
+      adjustedDimensions = this.adjustedDimensionsForPortraitViewport(viewportDimensions);
+    }
+
+    return adjustedDimensions;
+  },
+
+  adjustedDimensionsForPortraitViewport(viewportDimensions) {
     const scaleFactor = viewportDimensions.width / this.unscaledDimensions.width;
     const scaledGameHeight = scaleFactor * this.unscaledDimensions.height;
     const unscaledHeadRoom = (viewportDimensions.height - scaledGameHeight) / scaleFactor;
@@ -109,10 +117,10 @@ export default Ember.Service.extend({
     this.yOffset = unscaledHeadRoom;
     this.xOffset = 0;
 
-    this.configureCanvas(adjustedDimensions);
+    return adjustedDimensions;
   },
 
-  resizeCanvasForLandscapeViewport(viewportDimensions) {
+  adjustedDimensionsForLandscapeViewport(viewportDimensions) {
     const scaleFactor = viewportDimensions.height / this.unscaledDimensions.height;
     const scaledGameWidth = scaleFactor * this.unscaledDimensions.width;
     const unscaledLeadingWidth = (viewportDimensions.width - scaledGameWidth) / scaleFactor;
@@ -124,7 +132,7 @@ export default Ember.Service.extend({
     this.yOffset = 0;
     this.xOffset = unscaledLeadingWidth;
 
-    this.configureCanvas(adjustedDimensions);
+    return adjustedDimensions;
   },
 
   configureCanvas(dimensions) {

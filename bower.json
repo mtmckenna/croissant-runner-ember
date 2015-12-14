@@ -14,7 +14,8 @@
     "ember-data": "~2.1.0",
     "moment": ">= 2.8.0",
     "moment-timezone": ">= 0.1.0",
-    "fastclick": "~1.0.6"
+    "fastclick": "~1.0.6",
+    "sinonjs": "~1.17.1"
   },
   "devDependencies": {
     "js-cookie": "~2.0.4"
