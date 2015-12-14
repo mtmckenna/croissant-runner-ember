@@ -13,14 +13,6 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{game-canvas}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#game-canvas}}
-      template block text
-    {{/game-canvas}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.notEqual(this.$().text().indexOf('0 Pizzas'), -1);
+  assert.notEqual(this.$().text().indexOf('Hi Score'), -1);
 });

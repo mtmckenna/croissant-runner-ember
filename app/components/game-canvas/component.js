@@ -55,7 +55,7 @@ export default Ember.Component.extend({
       this.set('hiScore', score);
     }
 
-    const newLevel = Math.max(1, parseInt(Math.log10(score)) + 1)
+    const newLevel = Math.max(1, parseInt(Math.log10(score)) + 1);
     const currentLevel = parseInt(this.get('game').level);
 
     if (!!newLevel && newLevel !== currentLevel) {
