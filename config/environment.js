@@ -22,7 +22,7 @@ module.exports = function(environment) {
         name: 'GoogleAnalytics',
         environments: ['production'],
         config: {
-          id: 'UA-22416394-4'
+          id: process.env.GA_ID
         }
       }
     ],
