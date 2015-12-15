@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import DS from 'ember-data';
 import config from '../config/environment';
 
@@ -12,8 +11,5 @@ export default DS.JSONAPIAdapter.extend({
     "X-Parse-JAVASCRIPT-Key": config.parseJavascriptKey
   },
 
-  pathForType: function(modelName) {
-    var underscored = Ember.String.underscore(modelName);
-    return Ember.String.pluralize(underscored);
-  }
+  pathForType: function() { return 'hi_scores'; }
 });
