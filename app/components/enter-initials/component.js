@@ -15,8 +15,8 @@ export default Ember.Component.extend({
   }.observes('initials').on('init'),
 
   actions: {
-    goBack: function(route) {
-      this.sendAction('goBack', route);
+    goBack: function() {
+      this.sendAction('goBack', this.get('backRoute'));
     }
   }
 });
