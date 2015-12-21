@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'croissant-runner-ember',
     environment: environment,
     baseURL: '/',
-    locationType: 'auto',
+    locationType: process.env.EMBER_CLI_ELECTRON ? 'hash' : 'auto',
 
     contentSecurityPolicy: {
       'default-src': "'none'",
