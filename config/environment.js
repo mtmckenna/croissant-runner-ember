@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'croissant-runner-ember',
     environment: environment,
     baseURL: '/',
-    locationType: process.env.EMBER_CLI_ELECTRON ? 'hash' : 'auto',
+    defaultLocationType: process.env.EMBER_CLI_ELECTRON ? 'hash' : 'auto',
 
     contentSecurityPolicy: {
       'default-src': "'none'",
@@ -26,6 +26,11 @@ module.exports = function(environment) {
         }
       }
     ],
+
+    cordova: {
+      rebuildOnChange: false,
+      emulate: true
+    },
 
     EmberENV: {
       FEATURES: {
