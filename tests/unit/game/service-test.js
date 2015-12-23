@@ -2,6 +2,14 @@ import { moduleFor, test } from 'ember-qunit';
 import sinon from 'sinon';
 
 moduleFor('service:game', 'Unit | Service | game', {
+  beforeEach: function() {
+    var canvas = document.createElement('canvas');
+    this.context = canvas.getContext('2d');
+  },
+
+  afterEach: function() {
+    this.context = null;
+  }
 });
 
 test('changeLevel', function(assert) {

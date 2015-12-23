@@ -4,20 +4,13 @@ import Croissant from 'croissant-runner-ember/game/croissant';
 module('Croissant', {
   beforeEach: function() {
     var canvas = document.createElement('canvas');
-    var cache = { images: {} };
-    var game = { xOffset: 11, yOffset: 15, cache: cache };
-
     this.context = canvas.getContext('2d');
-
-    Croissant.prototype.game = game;
-
     this.croissant = new Croissant(this.context);
   },
 
   afterEach: function() {
     this.croissant = null;
     this.context = null;
-    Croissant.prototype.game = null;
   }
 });
 

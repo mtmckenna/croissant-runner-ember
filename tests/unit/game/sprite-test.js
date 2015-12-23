@@ -4,13 +4,7 @@ import Sprite from 'croissant-runner-ember/game/sprite';
 module('Sprite', {
   beforeEach: function() {
     var canvas = document.createElement('canvas');
-    var cache = { images: {} };
-    var game = { xOffset: 11, yOffset: 15, cache: cache };
-
     this.context = canvas.getContext('2d');
-
-    Sprite.prototype.game = game;
-
     this.sprite = new Sprite('pizza/cats.png',
                              this.context,
                              { x: 1, y: 2 },
@@ -21,19 +15,22 @@ module('Sprite', {
   afterEach: function() {
     this.sprite = null;
     this.context = null;
-    Sprite.prototype.game = null;
   }
 });
 
 test('adjustedPos', function(assert) {
+  this.sprite.game = { xOffset: 11, yOffset: 15 };
   assert.equal(this.sprite.adjustedPos.x, 12);
   assert.equal(this.sprite.adjustedPos.y, 17);
 });
 
+// erroneously passing
 test('cacheImage', function(assert) {
+  console.log(this.sprite.game.cache.images);
   assert.ok(this.sprite.game.cache.images[this.sprite.path]);
 });
 
+// erroneously passing
 test('image', function(assert) {
   assert.ok(this.sprite.image);
 });

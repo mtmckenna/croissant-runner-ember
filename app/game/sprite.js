@@ -20,6 +20,7 @@ export default class {
   }
 
   cacheImage(path) {
+    if (!this.game || !this.game.cache) { return; }
     this.game.cache.images[path] = this.game.cache.images[path] || this.createImage(path);
   }
 
