@@ -26,7 +26,6 @@ test('adjustedPos', function(assert) {
 
 // erroneously passing
 test('cacheImage', function(assert) {
-  console.log(this.sprite.game.cache.images);
   assert.ok(this.sprite.game.cache.images[this.sprite.path]);
 });
 
