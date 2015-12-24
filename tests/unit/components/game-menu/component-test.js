@@ -11,9 +11,9 @@ test('can toggle audio', function(assert) {
   var component = this.subject();
   var game = component.get('game');
 
-  assert.equal(game.audioEnabled, false);
-  component.send('toggleAudio');
   assert.equal(game.audioEnabled, true);
   component.send('toggleAudio');
   assert.equal(game.audioEnabled, false);
+  component.send('toggleAudio');
+  assert.equal(game.audioEnabled, true);
 });

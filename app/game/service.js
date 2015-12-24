@@ -9,7 +9,7 @@ import { colorLuminance } from './util';
 
 export default Ember.Service.extend({
   initializedAlready: false,
-  audioEnabled: false,
+  audioEnabled: true,
   paused: false,
   gameOver: false,
   level: null,
