@@ -30,7 +30,7 @@ test('touching pizzas means points', function(assert) {
     };
 
     var done = assert.async();
-    setTimeout(function() {
+    Ember.run.later(function() {
       assert.ok(game.score > 0);
       done();
     }, 3000);

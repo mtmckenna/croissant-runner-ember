@@ -51,8 +51,6 @@ export default Ember.Component.extend({
   },
 
   scoreUpdated(score) {
-    // *sigh* doing this to get my acceptance tests passing. I need
-    // to learn more about the runloop to figure out why.
     Ember.run(() => {
       this.set('pizzaCount', score);
 
