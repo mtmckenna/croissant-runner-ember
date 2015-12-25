@@ -51,10 +51,15 @@ export default Ember.Component.extend({
   },
 
   scoreUpdated(score) {
-    this.set('pizzaCount', score);
-    if (score > this.get('hiScore')) {
-      this.set('hiScore', score);
-    }
+    // *sigh* doing this to get my acceptance tests passing. I need
+    // to learn more about the runloop to figure out why.
+    Ember.run(() => {
+      this.set('pizzaCount', score);
+
+      if (score > this.get('hiScore')) {
+        this.set('hiScore', score);
+      }
+    });
 
     const newLevel = Math.max(1, parseInt(Math.log10(score)) + 1);
     const currentLevel = parseInt(this.get('game').level);
