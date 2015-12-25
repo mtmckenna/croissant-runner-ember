@@ -68,8 +68,7 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === 'production') {
-  }
+  if (environment === 'production') {}
 
   ENV.parseApplicationId = process.env.PARSE_APPLICATION_ID;
   ENV.parseJavascriptKey = process.env.PARSE_JAVASCRIPT_KEY;
