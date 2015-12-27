@@ -23,7 +23,7 @@ export default Ember.Mixin.create({
   },
 
   _goBackOnEnter(e) {
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
       this.$().find('.js-go-back').click();
     }
   },

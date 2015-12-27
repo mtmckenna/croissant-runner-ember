@@ -1,36 +1,35 @@
-/*global Cookies */
-
 import Ember from 'ember';
 
 export default Ember.Service.extend({
   store: Ember.inject.service(),
 
   previousHiScore: Ember.computed(function() {
-    return Cookies.get('hiScore') || 0;
+    return window.localStorage.getItem('hiScore') || 0;
   }).volatile(),
 
   previousInitials: Ember.computed(function() {
-    return Cookies.get('initials');
+    return window.localStorage.getItem('initials');
   }).volatile(),
 
   saveNewInitials(initials) {
-    Cookies.set('initials', initials);
+    window.localStorage.setItem('initials', initials);
   },
 
   setPendingHiScore(score) {
-    Cookies.set('pendingHiScore', score);
+    window.localStorage.setItem('pendingHiScore', score);
   },
 
   savePendingHiScore() {
-    const score = Cookies.get('pendingHiScore');
+    const score = window.localStorage.getItem('pendingHiScore');
     const initials = this.get('previousInitials') || 'MJJ';
+
     this.saveHiScore(score, initials);
-    Cookies.remove('pendingHiScore');
+    window.localStorage.removeItem('pendingHiScore');
   },
 
   saveNewHiScore(score) {
     if (score < this.get('previousHiScore')) { return; }
-    Cookies.set('hiScore', score);
+    window.localStorage.setItem('hiScore', score);
     const initials = this.get('previousInitials') || 'MJJ';
     this.saveHiScore(score, initials);
   },

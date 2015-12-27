@@ -1,5 +1,3 @@
-/*global Cookies */
-
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -7,8 +5,8 @@ moduleForComponent('enter-initials', 'Integration | Component | enter initials',
   integration: true,
 
   beforeEach: function (assert) {
-    Cookies.remove('initials');
-    assert.notOk(Cookies.get('initials'));
+    window.localStorage.removeItem('initials');
+    assert.notOk(window.localStorage.getItem('initials'));
   }
 });
 
@@ -20,21 +18,21 @@ test('it renders', function(assert) {
 
 test("it uses Michael Jordan's initials by default", function(assert) {
   this.render(hbs`{{enter-initials}}`);
-  assert.equal(Cookies.get('initials'), 'MJJ');
+  assert.equal(window.localStorage.getItem('initials'), 'MJJ');
   assert.equal(this.$('.enter-initials--text-input').val(), 'MJJ');
 });
 
-test('it saves initials in the cookie', function(assert) {
+test('it saves initials in localStorage', function(assert) {
   this.render(hbs`{{enter-initials}}`);
   this.$('.enter-initials--text-input').val('SRS').trigger('change');
-  assert.equal(Cookies.get('initials'), 'SRS');
+  assert.equal(window.localStorage.getItem('initials'), 'SRS');
 });
 
 test('it displays the previously saved initials', function(assert) {
-  Cookies.set('initials', 'WWZ');
+  window.localStorage.setItem('initials', 'WWZ');
   this.render(hbs`{{enter-initials}}`);
   assert.equal(this.$('.enter-initials--text-input').val(), 'WWZ');
-  assert.equal(Cookies.get('initials'), 'WWZ');
+  assert.equal(window.localStorage.getItem('initials'), 'WWZ');
 });
 
 test('back buttons points to the right location', function(assert) {

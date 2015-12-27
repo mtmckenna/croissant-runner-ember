@@ -54,7 +54,6 @@
     "ember-metrics": "^0.5.1",
     "ember-moment": "4.1.0",
     "ember-sinon": "0.3.0",
-    "js-cookie": "2.0.4",
     "liquid-fire": "0.21.3"
   },
   "main": "electron.js"
