@@ -16,12 +16,12 @@
     </feature>
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
-    <name>CroissantRunnerEmber</name>
+    <name>Croissant</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Help Croissant collect pizza and avoid naps by jumping over her cat bed!
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="matt@mtmckenna.com" href="https://www.mtmckenna.com">
+        Matt McKenna
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -34,4 +34,5 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="Fullscreen" value="true" />
     <preference name="Orientation" value="all" />
+    <icon src="res/icon.png" />
 </widget>
