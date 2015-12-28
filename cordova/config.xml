@@ -28,4 +28,11 @@
     <preference name="Orientation" value="all" />
 
     <icon src="res/icon.png" />
-</widget>
+    <platform name="ios">
+      <icon src="res/ios/icon.png" width="57" height="57" />
+      <icon src="res/ios/icon-72.png" width="72" height="72" />
+      <splash src="res/screen/ios/Default~iphone.png" width="320" height="480"/>
+      <splash src="res/screen/ios/Default-Portrait~ipad.png" width="768" height="1024"/>
+      <splash src="res/screen/ios/Default-Landscape~ipad.png" width="1024" height="768"/>
+    </platform>
+  </widget>
