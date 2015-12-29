@@ -68,8 +68,8 @@ export default class {
 
   draw() {
     this.drawCounter += 1;
-    const x = Math.floor(this.adjustedPos.x);
-    const y = Math.floor(this.adjustedPos.y);
+    const x = Math.round(this.adjustedPos.x);
+    const y = Math.round(this.adjustedPos.y);
 
     this.context.drawImage(this.image,
                            this.currentFrame * (this.size.width + this.borderWidth), 0,
