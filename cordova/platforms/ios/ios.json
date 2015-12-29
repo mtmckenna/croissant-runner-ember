@@ -9,11 +9,15 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.croissantthepizzacat.www"
+        },
+        "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "com.croissantthepizzacat.www"
         }
     },
     "dependent_plugins": {},
     "modules": [],
     "plugin_metadata": {
-        "cordova-plugin-whitelist": "1.2.0"
+        "cordova-plugin-whitelist": "1.2.0",
+        "cordova-plugin-crosswalk-webview": "1.4.0"
     }
 }
