@@ -16,6 +16,8 @@
     </feature>
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
+    <icon height="57" src="res/ios/icon.png" width="57" />
+    <icon height="72" src="res/ios/icon-72.png" width="72" />
     <splash height="480" src="res/screen/ios/Default~iphone.png" width="320" />
     <splash height="1024" src="res/screen/ios/Default-Portrait~ipad.png" width="768" />
     <splash height="768" src="res/screen/ios/Default-Landscape~ipad.png" width="1024" />
