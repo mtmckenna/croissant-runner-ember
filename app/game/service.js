@@ -178,7 +178,7 @@ export default Ember.Service.extend({
   _prepareMobileAudio() {
     if (!this.userHasInteracted) {
 
-      var buffer = this.audioContext.createBuffer(1, 1, 22050);
+      var buffer = this.audioContext.createBuffer(1, 22050, 22050);
       var source = this.audioContext.createBufferSource();
 
       source.buffer = buffer;
