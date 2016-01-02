@@ -6,6 +6,7 @@ import Moon from './moon';
 import SpriteEmitter from './sprite-emitter';
 import SoundEffect from './sound-effect';
 import { colorLuminance } from './util';
+import IosSafeAudioContext from 'npm:ios-safe-audio-context';
 
 export default Ember.Service.extend({
   initializedAlready: false,
@@ -175,17 +176,11 @@ export default Ember.Service.extend({
 
   // iOS web audio is such misery.
   // https://paulbakaus.com/tutorials/html5/web-audio-on-ios/
+  // https://github.com/Jam3/ios-safe-audio-context
   _prepareMobileAudio() {
     if (!this.userHasInteracted) {
-
-      var buffer = this.audioContext.createBuffer(1, 22050, 22050);
-      var source = this.audioContext.createBufferSource();
-
-      source.buffer = buffer;
-      source.connect(this.audioContext.destination);
-      source.start(0);
-
-      this.croissant.addAudio(this.audioContext);
+      this.audioContext = IosSafeAudioContext();
+      this.configureAudioEffects(this.audioContext);
       this.userHasInteracted = true;
     }
   },
@@ -201,7 +196,7 @@ export default Ember.Service.extend({
   },
 
   playAudio(effectName) {
-    if (!this.audioEnabled) { return; }
+    if (!this.audioEnabled || !this.audioContext) { return; }
     this.audioHash[effectName].play();
   },
 

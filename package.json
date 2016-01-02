@@ -21,6 +21,7 @@
   "devDependencies": {
     "broccoli-asset-rev": "^2.1.2",
     "electron-prebuilt": "0.36.1",
+    "ember-browserify": "^1.1.4",
     "ember-cli": "1.13.8",
     "ember-cli-app-version": "0.5.0",
     "ember-cli-autoprefixer": "0.5.0",
@@ -54,6 +55,7 @@
     "ember-metrics": "^0.5.1",
     "ember-moment": "4.1.0",
     "ember-sinon": "0.3.0",
+    "ios-safe-audio-context": "^1.0.1",
     "liquid-fire": "0.21.3"
   },
   "main": "electron.js"
