@@ -5,7 +5,7 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     fingerprint: {
       prepend: 'https://s3.amazonaws.com/croissant.mtmckenna.com-assets/',
-      extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'wav']
+      extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'wav', 'ico']
     },
     dotEnv: {
       path: {
