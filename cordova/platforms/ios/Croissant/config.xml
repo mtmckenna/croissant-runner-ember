@@ -46,4 +46,8 @@
     <preference name="Fullscreen" value="true" />
     <preference name="Orientation" value="all" />
     <icon src="res/icon.png" />
+    <preference name="xwalkVersion" value="15+" />
+    <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
+    <preference name="xwalkMode" value="embedded" />
+    <preference name="xwalkMultipleApk" value="true" />
 </widget>
