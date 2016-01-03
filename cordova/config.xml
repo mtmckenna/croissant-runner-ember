@@ -40,6 +40,14 @@
         <splash height="2208" src="res/screen/ios/Default-Portrait-736h@3x.png" width="1242" />
         <splash height="1242" src="res/screen/ios/Default-Landscape-736h@3x.png" width="2208" />
     </platform>
+
+    <platform name="android">
+      <icon src="res/android/drawable-ldpi/appicon.png" density="ldpi" />
+      <icon src="res/android/drawable-mdpi/appicon.png" density="mdpi" />
+      <icon src="res/android/drawable-hdpi/appicon.png" density="hdpi" />
+      <icon src="res/android/drawable-xhdpi/appicon.png" density="xhdpi" />
+    </platform>
+
     <preference name="xwalkVersion" value="15+" />
     <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
     <preference name="xwalkMode" value="embedded" />
