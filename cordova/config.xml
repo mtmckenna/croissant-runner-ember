@@ -26,6 +26,7 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="Fullscreen" value="true" />
     <preference name="Orientation" value="all" />
+
     <icon src="res/icon.png" />
     <platform name="ios">
         <icon height="57" src="res/ios/icon.png" width="57" />
@@ -42,12 +43,26 @@
     </platform>
 
     <platform name="android">
-      <icon src="res/android/drawable-ldpi/appicon.png" density="ldpi" />
       <icon src="res/android/drawable-mdpi/appicon.png" density="mdpi" />
       <icon src="res/android/drawable-hdpi/appicon.png" density="hdpi" />
       <icon src="res/android/drawable-xhdpi/appicon.png" density="xhdpi" />
+
+      <splash src="res/android/default.png"/>
+      <splash src="res/android/res-notlong-land-hdpi/default.png" density="land-hdpi" />
+      <splash src="res/android/res-notlong-land-ldpi/default.png" density="land-ldpi" />
+      <splash src="res/android/res-notlong-land-mdpi/default.png" density="land-mdpi" />
+      <splash src="res/android/res-notlong-land-xhdpi/default.png" density="land-xhdpi" />
+      <splash src="res/android/res-notlong-land-xxhdpi/default.png" density="land-xxhdpi" />
+      <splash src="res/android/res-notlong-land-xxxhdpi/default.png" density="land-xxxhdpi" />
+      <splash src="res/android/res-notlong-port-hdpi/default.png" density="port-hdpi" />
+      <splash src="res/android/res-notlong-port-ldpi/default.png" density="port-ldpi" />
+      <splash src="res/android/res-notlong-port-mdpi/default.png" density="port-mdpi" />
+      <splash src="res/android/res-notlong-port-xhdpi/default.png" density="port-xhdpi" />
+      <splash src="res/android/res-notlong-port-xxhdpi/default.png" density="port-xxhdpi" />
+      <splash src="res/android/res-notlong-port-xxxhdpi/default.png" density="port-xxxhdpi" />
     </platform>
 
+    <preference name="SplashScreen" value="screen" />
     <preference name="xwalkVersion" value="15+" />
     <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
     <preference name="xwalkMode" value="embedded" />
