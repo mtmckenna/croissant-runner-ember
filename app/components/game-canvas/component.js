@@ -73,14 +73,16 @@ export default Ember.Component.extend({
   },
 
   addEventListeners() {
-    window.addEventListener('keydown', this.playOrPause, false);
-    window.addEventListener('resize', this.resizeCanvas, false);
+    const element = this.get('element');
+    element.addEventListener('keydown', this.playOrPause, false);
+    element.addEventListener('resize', this.resizeCanvas, false);
   },
 
   removeEventListeners() {
-    window.removeEventListener('keydown', this.playOrPause, false);
-    window.removeEventListener('resize', this.resizeCanvas, false);
+    const element = this.get('element');
     const game = this.get('game');
+    element.removeEventListener('keydown', this.playOrPause, false);
+    element.removeEventListener('resize', this.resizeCanvas, false);
     if (game) { game.removeEventListeners(); }
   },
 
