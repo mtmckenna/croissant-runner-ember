@@ -6,7 +6,7 @@ import Moon from './moon';
 import SpriteEmitter from './sprite-emitter';
 import SoundEffect from './sound-effect';
 import { colorLuminance } from './util';
-import IosSafeAudioContext from 'npm:ios-safe-audio-context';
+import iosSafeAudioContext from 'npm:ios-safe-audio-context';
 
 export default Ember.Service.extend({
   initializedAlready: false,
@@ -179,7 +179,7 @@ export default Ember.Service.extend({
   // https://github.com/Jam3/ios-safe-audio-context
   _prepareMobileAudio() {
     if (!this.userHasInteracted) {
-      this.audioContext = IosSafeAudioContext();
+      this.audioContext = iosSafeAudioContext();
       this.configureAudioEffects(this.audioContext);
       this.userHasInteracted = true;
     }

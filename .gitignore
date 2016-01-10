@@ -2,6 +2,8 @@
 .DS_Store
 .env*
 
+electron-builds/
+
 # compiled output
 /dist
 /tmp

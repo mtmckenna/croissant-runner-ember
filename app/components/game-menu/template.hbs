@@ -1,30 +1,30 @@
-<ul class='game-menu--options'>
+<ul class='game-menu__options'>
   <li>
     {{#link-to 'play'}}
-    <div class='game-menu--button js-go-back'>PLAY</div>
+    <div class='game-menu__button js-go-back'>PLAY</div>
     {{/link-to}}
   </li>
   <li>
-    <div class='game-menu--button' {{action 'toggleAudio'}}>{{audioText}}</div>
+    <div class='game-menu__button' {{action 'toggleAudio'}}>{{audioText}}</div>
   </li>
   <li>
     {{#link-to 'play.menu.hi-scores'}}
-    <div class='game-menu--button'>HI SCORES</div>
+    <div class='game-menu__button'>HI SCORES</div>
     {{/link-to}}
   </li>
   <li>
     {{#link-to 'play.menu.initials' (query-params backRoute='play.menu')}}
-    <div class='game-menu--button'>INITIALS</div>
+    <div class='game-menu__button'>INITIALS</div>
     {{/link-to}}
   </li>
   <li>
     <a href="mailto:matt@mtmckenna.com">
-    <div class='game-menu--button'>EMAIL ME</div>
+    <div class='game-menu__button'>EMAIL ME</div>
     </a>
   </li>
   <li>
     {{#link-to 'index'}}
-    <div class='game-menu--button'>HOME</div>
+    <div class='game-menu__button'>HOME</div>
     {{/link-to}}
   </li>
 </ul>

@@ -25,7 +25,7 @@ canvas {
   overflow: scroll;
 }
 
-.liquid-container-full-screen {
+.liquid-container--full-screen {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -33,12 +33,12 @@ canvas {
   left: 0;
 }
 
-.play--canvas {
+.game__canvas {
   width: 100%;
   height: 100%;
 }
 
-.play--scores {
+.game__scores {
   position: absolute;
   color: #fff;
   font-size: 15px;
@@ -47,21 +47,21 @@ canvas {
   box-sizing: border-box;
 }
 
-.play--scores__pizza-count {
+.game__scores__pizza-count {
   float: left;
 }
 
-.play--scores__hi-score {
+.game__scores__hi-score {
   float: right;
 }
 
-.play--menu-button__link {
+.game__menu-button__link {
   display: inline-block;
   width: 100%;
   height: 100%;
 }
 
-.play--menu-button__image {
+.game__menu-button__image {
   width: 42px;
   height: 45px;
   padding-top: 15px;
@@ -73,7 +73,7 @@ canvas {
   padding: 50px 0 0 0;
 }
 
-.game-menu--options {
+.game-menu__options {
   color: #fff;
   font-size: 40px;
   list-style: none;
@@ -85,7 +85,7 @@ canvas {
   }
 }
 
-.game-menu--button {
+.game-menu__button {
   width: 100%;
   color: #fff;
   text-decoration: none;
@@ -99,7 +99,7 @@ canvas {
   }
 }
 
-.game-menu--header {
+.game-menu__header {
   color: #fff;
 }
 
@@ -116,11 +116,11 @@ canvas {
   }
 }
 
-.enter-initials--text-input__wrapper {
+.enter-initials__text-input__wrapper {
   padding: 0 25px 0 25px;
 }
 
-.enter-initials--text-input {
+.enter-initials__text-input {
   width: 100%;
   box-sizing: border-box;
   text-align: center;
@@ -131,20 +131,20 @@ canvas {
   color: #fff;
 }
 
-.index--container {
+.index__container {
   padding: 50px 0;
 }
 
-.index--menu {
+.index__menu {
   height: 100%;
   width: 100%;
 }
 
-.index--menu__play {
+.index__menu__play {
   font-size: 100px;
   color: #fff;
   text-decoration: none;
-  animation: index--menu__play__colors--keyframe 1s infinite;
+  animation: index__play__colors__keyframe 1s infinite;
 
   a {
     color: inherit;
@@ -158,7 +158,7 @@ canvas {
 }
 
 // http://codepen.io/beben-koben/pen/gfuvc
-@keyframes index--menu__play__colors--keyframe {
+@keyframes index__play__colors__keyframe {
   0% {color: #ff0000;}
   10% {color: #ff8000;}
   20% {color: #ffff00;}
@@ -172,7 +172,7 @@ canvas {
   100% {color: #ff0080;}
 }
 
-.index--title-text {
+.index__title-text {
   font: 60px 'Lucida Console', Monaco, monospace;
   color: #fff;
   text-align: center;

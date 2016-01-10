@@ -19,19 +19,19 @@ test('it renders', function(assert) {
 test("it uses Michael Jordan's initials by default", function(assert) {
   this.render(hbs`{{enter-initials}}`);
   assert.equal(window.localStorage.getItem('initials'), 'MJJ');
-  assert.equal(this.$('.enter-initials--text-input').val(), 'MJJ');
+  assert.equal(this.$('.enter-initials__text-input').val(), 'MJJ');
 });
 
 test('it saves initials in localStorage', function(assert) {
   this.render(hbs`{{enter-initials}}`);
-  this.$('.enter-initials--text-input').val('SRS').trigger('change');
+  this.$('.enter-initials__text-input').val('SRS').trigger('change');
   assert.equal(window.localStorage.getItem('initials'), 'SRS');
 });
 
 test('it displays the previously saved initials', function(assert) {
   window.localStorage.setItem('initials', 'WWZ');
   this.render(hbs`{{enter-initials}}`);
-  assert.equal(this.$('.enter-initials--text-input').val(), 'WWZ');
+  assert.equal(this.$('.enter-initials__text-input').val(), 'WWZ');
   assert.equal(window.localStorage.getItem('initials'), 'WWZ');
 });
 
@@ -45,5 +45,5 @@ test('back buttons points to the right location', function(assert) {
   });
 
   this.render(hbs`{{enter-initials backRoute=pizzaRouteName goBack='goBackAction'}}`);
-  this.$('.game-menu--button').click();
+  this.$('.game-menu__button').click();
 });

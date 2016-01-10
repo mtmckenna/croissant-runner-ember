@@ -23,7 +23,7 @@ test('menu pages are navigable', function(assert) {
       assert.equal(currentPath(), 'play.index');
       assert.equal(currentURL(), '/play/1');
 
-      click('.play--menu-button__link');
+      click('.game__menu-button__link');
 
       andThen(function() {
         assert.equal(currentPath(), 'play.menu.index');
@@ -52,7 +52,7 @@ test('menu pages are navigable', function(assert) {
 
                 andThen(function() {
                   assert.equal(currentPath(), 'play.index');
-                  click('.play--menu-button__link');
+                  click('.game__menu-button__link');
 
                   andThen(function() {
                     assert.equal(currentPath(), 'play.menu.index');
