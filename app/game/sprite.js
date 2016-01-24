@@ -14,8 +14,8 @@ export default class {
 
   get adjustedPos() {
     return {
-      x: this.pos.x + this.game.xOffset,
-      y: this.pos.y + this.game.yOffset
+      x: Math.floor(this.pos.x + this.game.xOffset),
+      y: Math.floor(this.pos.y + this.game.yOffset)
     };
   }
 
@@ -68,8 +68,8 @@ export default class {
 
   draw() {
     this.drawCounter += 1;
-    const x = Math.floor(this.adjustedPos.x);
-    const y = Math.floor(this.adjustedPos.y);
+    const x = this.adjustedPos.x;
+    const y = this.adjustedPos.y;
 
     this.context.drawImage(this.image,
                            this.currentFrame * (this.size.width + this.borderWidth), 0,
