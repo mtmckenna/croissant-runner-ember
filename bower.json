@@ -18,6 +18,7 @@
     "sinonjs": "~1.17.1",
     "pretender": "~0.10.1",
     "lodash": "~3.7.0",
-    "Faker": "~3.0.0"
+    "Faker": "~3.0.0",
+    "firebase": "^2.1.0"
   }
 }

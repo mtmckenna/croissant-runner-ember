@@ -4,14 +4,15 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'croissant-runner-ember',
     environment: environment,
+    firebase: 'https://croissant-pizza-cat.firebaseio.com/',
     baseURL: '/',
     defaultLocationType: process.env.EMBER_CLI_ELECTRON ? 'hash' : 'auto',
 
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' ad.leadbolt.net www.google-analytics.com 'unsafe-inline'",
+      'script-src': "'self' www.google-analytics.com 'unsafe-inline'",
       'font-src': "'self'",
-      'connect-src': "'self' www.google-analytics.com api.parse.com",
+      'connect-src': "'self' www.google-analytics.com wss://*.firebaseio.com",
       'img-src': "'self' www.google-analytics.com",
       'style-src': "'self'",
       'media-src': "'self'"
@@ -69,9 +70,6 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {}
-
-  ENV.parseApplicationId = process.env.PARSE_APPLICATION_ID;
-  ENV.parseJavascriptKey = process.env.PARSE_JAVASCRIPT_KEY;
 
   return ENV;
 };

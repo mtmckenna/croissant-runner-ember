@@ -54,8 +54,9 @@
     "ember-electron": "0.3.4",
     "ember-export-application-global": "^1.0.3",
     "ember-metrics": "^0.5.1",
-    "ember-moment": "4.1.0",
+    "ember-moment": "6.0.0",
     "ember-sinon": "0.3.0",
+    "emberfire": "1.6.4",
     "ios-safe-audio-context": "^1.0.1",
     "liquid-fire": "0.21.3"
   },
