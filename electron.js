@@ -1,6 +1,12 @@
-var BrowserWindow = require('browser-window');
-var app = require('app');
+/* jshint node: true */
+
+var electron = require('electron');
+
+var app = electron.app;
 var mainWindow = null;
+var BrowserWindow = electron.BrowserWindow;
+
+electron.crashReporter.start();
 
 app.on('window-all-closed', function onWindowAllClosed() {
     if (process.platform !== 'darwin') {
