@@ -9,11 +9,5 @@
 <span class='game-menu__header'>LATEST HI SCORES</span>
 
 <table class='hi-scores-table'>
-  {{#each model as |hiScore|}}
-  <tr>
-    <td>{{hiScore.initials}}</td>
-    <td>{{hiScore.score}}</td>
-    <td>{{moment-from-now hiScore.createdAt}}</td>
-  </tr>
-  {{/each}}
+  {{sorted-scores scores=model}}
 </table>

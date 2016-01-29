@@ -1,7 +1,8 @@
 import DS from 'ember-data';
+import moment from 'moment';
 
 export default DS.Model.extend({
   initials: DS.attr('string'),
   score: DS.attr('number', { defaultValue: 0 }),
-  createdAt: DS.attr('string', { defaultValue() { return moment(); }})
+  createdAt: DS.attr('date', { defaultValue() { return Date(); }})
 });

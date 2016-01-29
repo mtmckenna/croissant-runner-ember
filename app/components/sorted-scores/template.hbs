@@ -1,0 +1,8 @@
+{{#each sortedScores as |score|}}
+<tr>
+  <td>{{score.initials}}</td>
+  <td class="js-score">{{score.score}}</td>
+  <td>{{moment-from-now score.createdAt}}</td>
+</tr>
+{{/each}}
+
