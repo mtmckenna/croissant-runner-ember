@@ -73,9 +73,8 @@ export default Ember.Component.extend({
   },
 
   addEventListeners() {
-    const element = this.get('element');
-    element.addEventListener('keydown', this.playOrPause, false);
-    element.addEventListener('resize', this.resizeCanvas, false);
+    window.addEventListener('keydown', this.playOrPause, false);
+    window.addEventListener('resize', this.resizeCanvas, false);
   },
 
   removeEventListeners() {
