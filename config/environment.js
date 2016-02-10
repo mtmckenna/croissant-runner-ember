@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'croissant-runner-ember',
     environment: environment,
-    firebase: 'https://croissant-pizza-cat.firebaseio.com/',
+    firebase: process.env.FIREBASE_URL,
     baseURL: '/',
     defaultLocationType: process.env.EMBER_CLI_ELECTRON ? 'hash' : 'auto',
 
