@@ -1,6 +1,4 @@
 html, body {
-  width:  100%;
-  height: 100%;
   margin: 0;
   text-align: center;
   font: 15px 'Lucida Console', Monaco, monospace;
@@ -20,17 +18,17 @@ canvas {
   vertical-align: bottom;
 }
 
-.liquid-container--full-screen .liquid-child {
-  height: 100%;
-  overflow: scroll;
-}
-
 .liquid-container--full-screen {
   position: absolute;
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
+}
+
+.liquid-container--full-screen .liquid-child {
+  height: 100%;
+  overflow: scroll;
 }
 
 .game__canvas {
@@ -133,11 +131,6 @@ canvas {
 
 .index__container {
   padding: 50px 0;
-}
-
-.index__menu {
-  height: 100%;
-  width: 100%;
 }
 
 .index__menu__play {
