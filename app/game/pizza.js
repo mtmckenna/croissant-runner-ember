@@ -2,14 +2,14 @@ import Sprite from './sprite';
 import { getRandomInt } from './util';
 
 export default class extends Sprite {
-  constructor(context, yPosition = null) {
+  constructor(context, yPosition = null, xVelocity = -1.5) {
     var path = 'assets/images/pizza.png';
-    var y = yPosition || getRandomInt(20, 200);
+    yPosition = yPosition || getRandomInt(20, 200);
     super(path,
           context,
-          { x: 320, y: y },
+          { x: 320, y: yPosition },
           { width: 11, height: 16 },
-          { x: -1.5, y: 0 } );
+          { x: xVelocity, y: 0 } );
 
     this.type = 'pizza';
   }

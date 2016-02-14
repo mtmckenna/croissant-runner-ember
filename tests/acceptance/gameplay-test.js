@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import Pizza from 'croissant-runner-ember/game/pizza';
 import { module, test } from 'qunit';
 import startApp from 'croissant-runner-ember/tests/helpers/start-app';
 
@@ -14,24 +13,20 @@ module('Acceptance | gameplay', {
 });
 
 test('touching pizzas means points', function(assert) {
-  var game = this.application.__container__.lookup('service:game');
-
-  visit('/');
-  click('a:contains("PLAY!")');
+  visit('/play/1');
 
   andThen(function() {
     assert.equal(currentURL(), '/play/1');
-    assert.equal(game.score, 0);
 
-    game.spriteEmitter.emitSprites = function() {
-      if (!game.spriteEmitter.shouldCreateSprite(10)) { return; }
-      var pizza = new Pizza(this.context, 200);
-      this.sprites.push(pizza);
-    };
+    var pizzaCount = parseInt($('.js-pizza-count').text());
+    assert.equal(pizzaCount, 0);
+
+    spewPizzasLikeCrazy();
 
     var done = assert.async();
     Ember.run.later(function() {
-      assert.ok(game.score > 0);
+      pizzaCount = parseInt($('.js-pizza-count').text());
+      assert.ok(pizzaCount > 0);
       done();
     }, 3000);
   });
