@@ -9,7 +9,7 @@ export default class extends Sprite {
           context,
           { x: 320, y: y },
           { width: 6, height: 6 },
-          { x: -1.5, y: 0 });
+          { x: -2.0, y: 0 });
   }
 
   get currentFrame() {

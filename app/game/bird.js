@@ -9,7 +9,7 @@ export default class extends Sprite {
           context,
           { x: 320, y: y },
           { width: 7, height: 5 },
-          { x: -0.5, y: 0 });
+          { x: -1.0, y: 0 });
   }
 
   get adjustedPos() {

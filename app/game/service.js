@@ -236,6 +236,7 @@ export default Ember.Service.extend({
 
   update() {
     if (this.gameOver) { return; }
+
     this.spriteEmitter.update();
     this.croissant.update();
 
@@ -247,7 +248,7 @@ export default Ember.Service.extend({
     this.currentBackgroundColor = colorLuminance(this.initialBackgroundColor, (this.level - 1) / 5 * -1);
   },
 
- drawGround() {
+  drawGround() {
     const width = this.adjustedDimensions.width;
     const height = 20;
     const x = 0;

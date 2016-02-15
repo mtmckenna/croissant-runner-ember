@@ -8,7 +8,7 @@ export default class extends Sprite {
           context,
           { x: 320, y: y },
           { width: 32, height: 28 },
-          { x: -1.5, y: 0 } );
+          { x: -2.0, y: 0 } );
 
     this.type = 'catbed';
     this.croissantInCatBedPath = 'assets/images/croissant-in-catbed.png';
