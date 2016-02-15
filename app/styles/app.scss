@@ -5,6 +5,7 @@ html, body {
   text-align: center;
   font: 15px 'Lucida Console', Monaco, monospace;
   overflow: hidden;
+  color: #fff;
 }
 
 body {
@@ -84,6 +85,19 @@ canvas {
     text-decoration: none;
   }
 }
+
+.app-download-links {
+  color: #fff;
+  font-size: 20px;
+  list-style: none;
+  padding: 0;
+
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+}
+
 
 .game-menu__button {
   width: 100%;

@@ -25,6 +25,7 @@ Router.map(function() {
     this.route('menu', function() {
       this.route('hi-scores');
       this.route('initials');
+      this.route('apps');
     });
   });
 });

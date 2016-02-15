@@ -45,21 +45,34 @@ test('menu pages are navigable', function(assert) {
 
               click('a:contains("BACK")');
 
+
               andThen(function() {
                 assert.equal(currentPath(), 'play.menu.index');
 
-                click('a:contains("PLAY")');
+                click('a:contains("APPS")');
 
                 andThen(function() {
-                  assert.equal(currentPath(), 'play.index');
-                  click('.game__menu-button__link');
+                  assert.equal(currentPath(), 'play.menu.apps');
+
+                  click('a:contains("BACK")');
 
                   andThen(function() {
                     assert.equal(currentPath(), 'play.menu.index');
-                    click('a:contains("HOME")');
+
+                    click('a:contains("PLAY")');
 
                     andThen(function() {
-                      assert.equal(currentPath(), 'index');
+                      assert.equal(currentPath(), 'play.index');
+                      click('.game__menu-button__link');
+
+                      andThen(function() {
+                        assert.equal(currentPath(), 'play.menu.index');
+                        click('a:contains("HOME")');
+
+                        andThen(function() {
+                          assert.equal(currentPath(), 'index');
+                        });
+                      });
                     });
                   });
                 });
