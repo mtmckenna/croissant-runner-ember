@@ -1,7 +1,7 @@
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 var env = EmberApp.env();
-var enableFingerprints = env === 'production' && !process.env.EMBER_CLI_ELECTRON
+var enableFingerprints = env === 'production' && !process.env.EMBER_CLI_ELECTRON && !process.env.EMBER_CLI_CORDOVA
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
