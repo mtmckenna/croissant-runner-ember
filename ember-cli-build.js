@@ -3,12 +3,6 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 var env = EmberApp.env();
 var enableFingerprints = env === 'production' && !process.env.EMBER_CLI_ELECTRON && process.env.EMBER_CLI_CORDOVA == 0
 
-console.log(process.env.EMBER_CLI_ELECTRON);
-console.log(process.env.EMBER_CLI_CORDOVA);
-console.log(!process.env.EMBER_CLI_ELECTRON);
-console.log(!process.env.EMBER_CLI_CORDOVA);
-console.log(enableFingerprints);
-
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     fingerprint: {
