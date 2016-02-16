@@ -28,6 +28,6 @@ test('touching pizzas means points', function(assert) {
       pizzaCount = parseInt($('.js-pizza-count').text());
       assert.ok(pizzaCount > 0);
       done();
-    }, 3000);
+    }, 1000);
   });
 });
