@@ -2,7 +2,6 @@ import Ember from 'ember';
 import GoBackOnEnter from 'croissant-runner-ember/mixins/go-back-on-enter';
 
 export default Ember.Component.extend(GoBackOnEnter, {
-  classNames: ['game-menu'],
   game: Ember.inject.service(),
 
   init: function() {
