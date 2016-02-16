@@ -21,6 +21,7 @@ module.exports = function(deployTarget) {
     }
 
     ENV['s3-index'] = {
+      allowOverwrite: true,
       accessKeyId: process.env['AWS_KEY'],
       secretAccessKey: process.env['AWS_SECRET'],
       bucket: 'croissant.mtmckenna.com',
