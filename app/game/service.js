@@ -53,7 +53,7 @@ export default Ember.Service.extend({
   play() {
     this.paused = false;
 
-    this.main();
+    this.gameLoop();
     this.removeEventListeners();
     this.addEventListeners();
   },
@@ -65,8 +65,8 @@ export default Ember.Service.extend({
     this.removeEventListeners();
   },
 
-  main() {
-    this.animReq = window.requestAnimationFrame(this.main.bind(this));
+  gameLoop() {
+    this.animReq = window.requestAnimationFrame(this.gameLoop.bind(this));
     this.update();
     this.draw();
   },
