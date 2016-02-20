@@ -4,12 +4,7 @@ html, body {
   margin: 0;
   text-align: center;
   font: 15px 'Lucida Console', Monaco, monospace;
-  overflow: hidden;
   color: #fff;
-}
-
-body {
-  overflow: auto;
 }
 
 img {
@@ -31,7 +26,8 @@ canvas {
 
 .liquid-container--full-screen .liquid-child {
   height: 100%;
-  overflow: scroll;
+  width: 100%;
+  overflow-y: auto;
 }
 
 .game__canvas {
@@ -71,7 +67,6 @@ canvas {
 .game-menu {
   background:rgba(0,0,0,0.4);
   height: 100%;
-  padding: 50px 0 0 0;
 }
 
 .game-menu__options {
@@ -122,7 +117,7 @@ canvas {
   font-size: 20px;
   list-style: none;
   text-align: left;
-  padding: 0 0 0 15px;
+  padding: 0;
 
   td {
     min-width: 50px;
