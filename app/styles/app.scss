@@ -180,3 +180,15 @@ canvas {
   color: #fff;
   text-align: center;
 }
+
+@media (min-width: 500px) {
+  .game__scores {
+    font-size: 25px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .game__scores {
+    font-size: 35px;
+  }
+}
