@@ -19,5 +19,8 @@
     "lodash": "~3.7.0",
     "Faker": "~3.0.0",
     "firebase": "^2.1.0"
+  },
+  "resolutions": {
+    "ember": "2.3.0"
   }
 }
