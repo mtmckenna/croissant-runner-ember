@@ -8,7 +8,7 @@ export default Ember.Service.extend({
   }).volatile(),
 
   previousInitials: Ember.computed(function() {
-    return window.localStorage.getItem('initials');
+    return window.localStorage.getItem('initials') || 'MJJ';
   }).volatile(),
 
   saveNewInitials(initials) {
@@ -21,7 +21,7 @@ export default Ember.Service.extend({
 
   savePendingHiScore() {
     const score = window.localStorage.getItem('pendingHiScore');
-    const initials = this.get('previousInitials') || 'MJJ';
+    const initials = this.get('previousInitials');
 
     this.saveHiScore(score, initials);
     window.localStorage.removeItem('pendingHiScore');
@@ -30,7 +30,7 @@ export default Ember.Service.extend({
   saveNewHiScore(score) {
     if (score < this.get('previousHiScore')) { return; }
     window.localStorage.setItem('hiScore', score);
-    const initials = this.get('previousInitials') || 'MJJ';
+    const initials = this.get('previousInitials');
     this.saveHiScore(score, initials);
   },
 

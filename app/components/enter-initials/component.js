@@ -6,8 +6,13 @@ export default Ember.Component.extend(GoBackOnEnter, {
 
   init() {
     this._super(...arguments);
-    let initials = this.get('session').get('previousInitials') || 'MJJ';
+    let initials = this.get('session').get('previousInitials');
     this.set('initials', initials);
+  },
+
+  keyUp: function() {
+    let initials = this.get('initials');
+    this.get('session').saveNewInitials(initials);
   },
 
   didInsertElement() {
@@ -17,11 +22,6 @@ export default Ember.Component.extend(GoBackOnEnter, {
   willDestroyElement() {
     this.tearDownGoBackOnEnter();
   },
-
-  saveNewInitials: function() {
-    let initials = this.get('initials');
-    this.get('session').saveNewInitials(initials);
-  }.observes('initials').on('init'),
 
   actions: {
     goBack: function() {

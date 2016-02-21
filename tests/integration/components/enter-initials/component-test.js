@@ -18,13 +18,12 @@ test('it renders', function(assert) {
 
 test("it uses Michael Jordan's initials by default", function(assert) {
   this.render(hbs`{{enter-initials}}`);
-  assert.equal(window.localStorage.getItem('initials'), 'MJJ');
   assert.equal(this.$('.enter-initials__text-input').val(), 'MJJ');
 });
 
 test('it saves initials in localStorage', function(assert) {
   this.render(hbs`{{enter-initials}}`);
-  this.$('.enter-initials__text-input').val('SRS').trigger('change');
+  this.$('.enter-initials__text-input').val('SRS').trigger('keyup');
   assert.equal(window.localStorage.getItem('initials'), 'SRS');
 });
 
