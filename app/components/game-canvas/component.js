@@ -2,13 +2,13 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   game: Ember.inject.service(),
-  session: Ember.inject.service(),
+  localStorage: Ember.inject.service(),
   hiScore: 0,
   pizzaCount: 0,
 
   init() {
     this._super(...arguments);
-    this.set('hiScore', this.get('session').get('previousHiScore') || 0);
+    this.set('hiScore', this.get('localStorage').get('previousHiScore') || 0);
   },
 
   didInsertElement() {
@@ -43,10 +43,10 @@ export default Ember.Component.extend({
 
   gameOver(score) {
     this.sendAction('changeLevel', 1);
-    if (!this.get('session').get('previousInitials')) {
+    if (!this.get('localStorage').get('previousInitials')) {
       this.sendAction('enterInitialsAndSaveHiScore', score);
     } else {
-      this.get('session').saveNewHiScore(score);
+      this.get('localStorage').saveNewHiScore(score);
     }
   },
 

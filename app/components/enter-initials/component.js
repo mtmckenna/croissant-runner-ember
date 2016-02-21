@@ -2,17 +2,17 @@ import Ember from 'ember';
 import GoBackOnEnter from 'croissant-runner-ember/mixins/go-back-on-enter';
 
 export default Ember.Component.extend(GoBackOnEnter, {
-  session: Ember.inject.service(),
+  localStorage: Ember.inject.service(),
 
   init() {
     this._super(...arguments);
-    let initials = this.get('session').get('previousInitials');
+    let initials = this.get('localStorage').get('previousInitials');
     this.set('initials', initials);
   },
 
   keyUp: function() {
     let initials = this.get('initials');
-    this.get('session').saveNewInitials(initials);
+    this.get('localStorage').saveNewInitials(initials);
   },
 
   didInsertElement() {

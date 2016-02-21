@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  session: Ember.inject.service(),
+  localStorage: Ember.inject.service(),
 
   queryParams: {
     backRoute: {
@@ -12,7 +12,7 @@ export default Ember.Route.extend({
   actions: {
     goBack: function(route) {
       if (route === 'play.index') {
-        this.get('session').savePendingHiScore();
+        this.get('localStorage').savePendingHiScore();
       }
 
       this.transitionTo(route);
