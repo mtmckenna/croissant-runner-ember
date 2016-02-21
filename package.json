@@ -38,6 +38,7 @@
     "ember-cli-deploy-s3-index": "0.3.0",
     "ember-cli-document-title": "0.3.0",
     "ember-cli-dotenv": "1.0.4",
+    "ember-cli-es5-shim": "^0.2.0",
     "ember-cli-fastclick": "1.1.0",
     "ember-cli-htmlbars": "0.7.9",
     "ember-cli-htmlbars-inline-precompile": "^0.2.0",
