@@ -1,7 +1,7 @@
 {
   "name": "croissant-runner-ember",
   "version": "0.0.0",
-  "description": "Small description for croissant-runner-ember goes here",
+  "description": "Help Croissant collect pizza and avoid naps by jumping over her cat beds!",
   "private": true,
   "directories": {
     "doc": "doc",
