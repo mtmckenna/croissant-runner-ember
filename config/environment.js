@@ -28,6 +28,11 @@ module.exports = function(environment) {
       }
     ],
 
+    pace: {
+      theme: 'loading-bar',
+      color: 'blue',
+    },
+
     cordova: {
       rebuildOnChange: false,
       emulate: true
