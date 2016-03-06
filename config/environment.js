@@ -31,6 +31,33 @@ module.exports = function(environment) {
     pace: {
       theme: 'loading-bar',
       color: 'blue',
+      catchupTime: 50,
+      initialRate: .01,
+      minTime: 100,
+      ghostTime: 50,
+      maxProgressPerFrame: 20,
+      easeFactor: 1.25,
+      startOnPageLoad: true,
+      restartOnPushState: true,
+      restartOnRequestAfter: 500,
+      target: 'body',
+
+      elements: {
+        checkInterval: 100,
+        selectors: ['body', '.ember-view']
+      },
+
+      eventLag: {
+        minSamples: 10,
+        sampleCount: 3,
+        lagThreshold: 3
+      },
+
+      ajax: {
+        trackMethods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+        trackWebSockets: false,
+        ignoreURLs: []
+      }
     },
 
     cordova: {
