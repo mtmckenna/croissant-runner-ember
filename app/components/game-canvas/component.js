@@ -50,6 +50,10 @@ export default Ember.Component.extend({
     }
   },
 
+  log10: function(x) {
+    return Math.log(x) / Math.LN10;
+  },
+
   scoreUpdated(score) {
     Ember.run(() => {
       this.set('pizzaCount', score);
@@ -59,7 +63,7 @@ export default Ember.Component.extend({
       }
     });
 
-    const newLevel = Math.max(1, parseInt(Math.log10(score)) + 1);
+    const newLevel = Math.max(1, parseInt(this.log10(score)) + 1);
     const currentLevel = parseInt(this.get('game').level);
 
     if (!!newLevel && newLevel !== currentLevel) {

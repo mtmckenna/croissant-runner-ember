@@ -16,11 +16,6 @@ export default function startApp(attrs) {
 
     // stubbing out AudioContext for PhantomJS tests
     window.AudioContext = function() {};
-
-    // Phantom doesn't currently have Math.log10
-    Math.log10 = Math.log10 || function(x) {
-      return Math.log(x) / Math.LN10;
-    };
   });
 
   return application;
