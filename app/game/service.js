@@ -30,7 +30,10 @@ export default Ember.Service.extend({
     this.configureCanvas(this.unscaledDimensions);
 
     var AudioContext = window.AudioContext || window.webkitAudioContext;
-    this.audioContext = new AudioContext();
+    if (AudioContext) {
+      this.audioContext = new AudioContext();
+    }
+
     this.configureAudioEffects(this.audioContext);
 
     this.croissant = new Croissant(this.context, this.adjustedDimensions);
@@ -80,7 +83,7 @@ export default Ember.Service.extend({
     this.initializedAlready = true;
   },
 
-  configureAudioEffects(audioContext) {
+  configureAudioEffects(audioContext = null) {
     this.audioHash = {
       pizza: new SoundEffect('assets/audio/pizza.wav', audioContext),
       jump: new SoundEffect('assets/audio/jump.wav', audioContext),
