@@ -8,9 +8,7 @@ export default Mirage.Factory.extend({
    score: function() {
      return faker.random.number({
        'min': 10,
-       'max': 100
+       'max': 1000
      });
-   },
-
-   createdAt: faker.date.past
+   }
 });
