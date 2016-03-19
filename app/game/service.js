@@ -10,7 +10,7 @@ import iosSafeAudioContext from 'npm:ios-safe-audio-context';
 
 export default Ember.Service.extend({
   initializedAlready: false,
-  audioEnabled: true,
+  audioEnabled: false,
   paused: false,
   gameOver: false,
   level: null,
