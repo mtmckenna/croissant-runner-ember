@@ -5,7 +5,7 @@ module('Sprite', {
   beforeEach: function() {
     var canvas = document.createElement('canvas');
     this.context = canvas.getContext('2d');
-    this.sprite = new Sprite('pizza/cats.png',
+    this.sprite = new Sprite('assets/images/pizza.png',
                              this.context,
                              { x: 1, y: 2 },
                              { width: 100, height: 200 },

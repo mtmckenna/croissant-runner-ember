@@ -15,7 +15,11 @@ export default function startApp(attrs) {
     application.injectTestHelpers();
 
     // stubbing out AudioContext for PhantomJS tests
-    window.AudioContext = function() {};
+    window.AudioContext = function() {
+      return {
+        decodeAudioData: function() {}
+      };
+    };
   });
 
   return application;

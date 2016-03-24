@@ -18,5 +18,9 @@ module.exports = function(defaults) {
     }
   });
 
+  if (env === 'development') {
+    app.import('vendor/tests/qunit-overrides.css');
+  }
+
   return app.toTree();
 };
