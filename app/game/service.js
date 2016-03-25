@@ -36,6 +36,8 @@ export default Ember.Service.extend({
 
     this.configureAudioEffects(this.audioContext);
 
+    this.gameLoop = this._gameLoop.bind(this);
+
     this.croissant = new Croissant(this.context, this.adjustedDimensions);
     this.sun = new Sun(this.context, this.adjustedDimensions);
     this.moon = new Moon(this.context, this.adjustedDimensions);
@@ -68,8 +70,8 @@ export default Ember.Service.extend({
     this.removeEventListeners();
   },
 
-  gameLoop() {
-    this.animReq = window.requestAnimationFrame(this.gameLoop.bind(this));
+  _gameLoop() {
+    this.animReq = window.requestAnimationFrame(this.gameLoop);
     this.update();
     this.draw();
   },
