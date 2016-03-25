@@ -56,10 +56,8 @@ canvas {
   float: right;
 }
 
-.game__menu-button__link {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
+.game__menu-button {
+  cursor: pointer;
 }
 
 .game__menu-button__image {

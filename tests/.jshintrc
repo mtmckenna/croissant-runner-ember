@@ -23,7 +23,9 @@
     "currentURL",
     "currentPath",
     "currentRouteName",
-    "spewPizzasLikeCrazy"
+    "spewPizzasLikeCrazy",
+    "dispatchMouseDownEvent",
+    "Event"
   ],
   "node": false,
   "browser": false,

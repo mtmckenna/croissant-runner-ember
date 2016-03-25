@@ -157,8 +157,8 @@ export default Ember.Service.extend({
     window.addEventListener('touchend', this.prepareMobileAudio, true);
 
     window.addEventListener('keydown', this.jump, false);
-    window.addEventListener('mousedown', this.jump, false);
-    window.addEventListener('touchstart', this.jump, false);
+    document.body.addEventListener('mousedown', this.jump, false);
+    document.body.addEventListener('touchstart', this.jump, false);
   },
 
   removeEventListeners() {
@@ -168,8 +168,8 @@ export default Ember.Service.extend({
     window.removeEventListener('touchend', this.prepareMobileAudio, true);
 
     window.removeEventListener('keydown', this.jump, false);
-    window.removeEventListener('mousedown', this.jump, false);
-    window.removeEventListener('touchstart', this.jump, false);
+    document.body.removeEventListener('mousedown', this.jump, false);
+    document.body.removeEventListener('touchstart', this.jump, false);
   },
 
   _jump() {
