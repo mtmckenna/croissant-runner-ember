@@ -10,5 +10,9 @@ export default Mirage.Factory.extend({
        'min': 10,
        'max': 1000
      });
+   },
+
+   "created-at": function() {
+     return faker.date.past();
    }
 });

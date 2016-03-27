@@ -11,6 +11,8 @@ export default function() {
 
   this.post('hi-scores', function(db, request) {
     var requestBody = JSON.parse(request.requestBody);
+    var score = db['hi-scores'].insert(requestBody.data.attributes);
+    requestBody.data.id = score.id;
     return requestBody;
   });
 }
